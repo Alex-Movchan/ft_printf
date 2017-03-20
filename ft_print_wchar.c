@@ -31,7 +31,7 @@ char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 	}
 	else
 		src = (char *) malloc(sizeof(char) * (lst->accur + 1));
-		while (lst->accur-- > 0)
+		while (str[i])
 		{
 			ft_print_wchar(str[i], src, &j);
 			i++;
