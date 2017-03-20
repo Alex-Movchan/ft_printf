@@ -30,31 +30,15 @@ char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 		return (src);
 	}
 	else
-	str = ft_wstrdup(str);
-	if (lst->accur == -1)
-	{
-
-		src = (char *) malloc(sizeof(char) * (ft_len_wchar(str) + 1));
-		while (str[i])
-		{
-			ft_print_wchar(str[i], src, &j);
-			i++;
-		}
-		src[++j] = '\0';
-	}
-	else
-	{
 		src = (char *) malloc(sizeof(char) * (lst->accur + 1));
-		src[lst->accur + 1] = '\0';
-		str = ft_accurwchar(str, lst);
 		while (lst->accur-- > 0)
 		{
 			ft_print_wchar(str[i], src, &j);
 			i++;
 		}
 		src[++j] = '\0';
-	}
-
+	src = ft_accur(src, lst);
+	src = ft_width(src, lst);
 	//src = ft_accur(src, lst);
 	//free(str);
 	return (src);
