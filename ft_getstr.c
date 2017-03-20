@@ -66,5 +66,5 @@ char *getstr(va_list *ap, t_srt *lst)
 	else if (lst->letar == 'X')
 		return (ft_cast_xl(ap, lst));
 	else
-		return (ft_get_str(ap, lst));
+		return (get_str(ap, lst));
 }
