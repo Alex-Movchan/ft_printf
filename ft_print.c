@@ -2,7 +2,7 @@
 
 void ft_argdolar(va_list *ap, va_list *tmp, int len)
 {
-	va_copy(*ap, *tmp);
+	va_copy(*ap, tmp);
 	while (--len)
 		va_arg(*ap, int);
 }

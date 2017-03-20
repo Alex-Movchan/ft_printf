@@ -98,7 +98,7 @@ int		ft_format(const char *format, va_list *ap)
 
 	i = -1;
 	res = 0;
-	va_copy(tmp, *ap);
+	va_copy(&tmp, *ap);
 	while (format[++i] != '\0')
 	{
 		if (format[i] == '%')

@@ -21,7 +21,16 @@ char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 
 	j = -1;
 	i = 0;
-	str = ft_wstrdup(va_arg(*ap, wchar_t *));
+	str = va_arg(*ap, wchar_t *);
+	if (str == NULL)
+	{
+		str = "(null)";
+		str = ft_accur(str, lst);
+		str = ft_width(str, lst);
+		return (str);
+	}
+	else
+	str = ft_wstrdup(str);
 	if (lst->accur == -1)
 	{
 
@@ -36,9 +45,8 @@ char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 	else
 	{
 		src = (char *) malloc(sizeof(char) * (lst->accur + 1));
-		//src[lst->accur + 1] = '\0';
-
-		//str = ft_accurwchar(str, lst);
+		src[lst->accur + 1] = '\0';
+		str = ft_accurwchar(str, lst);
 		while (lst->accur-- > 0)
 		{
 			ft_print_wchar(str[i], src, &j);
@@ -48,7 +56,7 @@ char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 	}
 
 	//src = ft_accur(src, lst);
-	//free(str);
+	free(str);
 	return (src);
 }
 
@@ -83,7 +91,7 @@ int ft_strlen_wchar(wchar_t *str)
 	int i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != NULL)
 		i++;
 	return (i);
 }

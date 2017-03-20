@@ -20,7 +20,8 @@ char	*ft_strndup(char *str, int len)
 		return (NULL);
 	src = ft_strncpy(src, str, len);
 	src[len] = '\0';
-	free(str);
+	if (ft_strcmp(str, "(null)") != 0)
+		free(str);
 	return (src);
 }
 
