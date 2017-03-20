@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
+
 char *ft_getdouble(va_list *ap, t_srt *lst)
 {
 	if (lst->letar == 'F' || lst->letar == 'f')
@@ -20,18 +20,18 @@ char *ft_getdouble(va_list *ap, t_srt *lst)
 		return (ft_cast_e(ap, lst));
 	else if (lst->letar == 'E')
 		return (ft_cast_el(ap, lst));
-	else if (lst->letar == 'g')
+	/*else if (lst->letar == 'g')
 		return (ft_str_g(ap, lst));
 	else if (lst->letar == 'G')
 		return (ft_cast_gi(ap, lst));
 	else if (lst->letar == 'A')
 		return (ft_cast_al(ap, lst));
 	else if (lst->letar == 'a')
-		return (ft_cast_a(ap, lst));
+		return (ft_cast_a(ap, lst));*/
 	else
 		return (NULL);
 }
-*/
+
 char *get_str(va_list *ap, t_srt *lst)
 {
 	if (lst->letar == 'S' || (lst->letar == 's' && lst->size == 3))
@@ -39,7 +39,7 @@ char *get_str(va_list *ap, t_srt *lst)
 	else if (lst->letar == 's')
 		return (ft_cest_str(ap, lst));
 	else
-		return (NULL);//return (ft_getdouble(ap, lst));
+		return (ft_getdouble(ap, lst));
 }
 
 char *getstr(va_list *ap, t_srt *lst)
