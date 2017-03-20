@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+/*
 char *ft_getdouble(va_list *ap, t_srt *lst)
 {
 	if (lst->letar == 'F' || lst->letar == 'f')
@@ -31,7 +31,7 @@ char *ft_getdouble(va_list *ap, t_srt *lst)
 	else
 		return (NULL);
 }
-/*
+*/
 char *get_str(va_list *ap, t_srt *lst)
 {
 	if (lst->letar == 'S' || (lst->letar == 's' && lst->size == 3))
@@ -41,7 +41,7 @@ char *get_str(va_list *ap, t_srt *lst)
 	else
 		return (NULL);//return (ft_getdouble(ap, lst));
 }
-*/
+
 char *getstr(va_list *ap, t_srt *lst)
 {
 
@@ -66,5 +66,5 @@ char *getstr(va_list *ap, t_srt *lst)
 	else if (lst->letar == 'X')
 		return (ft_cast_xl(ap, lst));
 	else
-		return (ft_getdouble(ap, lst));
+		return (ft_get_str(ap, lst));
 }
