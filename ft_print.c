@@ -29,7 +29,7 @@ int ft_print(t_srt *lst, va_list *ap, va_list *tmp)
 
 	if (lst->dolar != 0)
 		ft_argdolar(ap, tmp, lst->dolar);
-	else if ((str = getstr(ap, lst)) != NULL || (str = ft_getchar(lst)) != NULL)
+	else if ((str = get_str(ap, lst)) != NULL || (str = ft_getchar(lst)) != NULL)
 	{
 		ft_putstr_fd(str, lst->fd);
 		return ((int) ft_strlen(str));

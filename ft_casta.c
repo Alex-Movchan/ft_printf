@@ -70,8 +70,10 @@ char *ft_str_zero(long double nb, t_srt *lst, char *s)
 
 void ft_ppp(char *c, char *b)
 {
-	if ((*c) >= '0' && (*c) <= '9')
+	if ((*c) >= '0' && (*c) < '9')
 		(*c) += 1;
+	else if ((*c) == '9')
+		(*c) = 'a';
 	else if ((*c) >= 97 && (*c) < 102)
 		(*c) += 1;
 	else if ((*c) == 102)
@@ -95,7 +97,7 @@ char *ft_okrug_a(char *str)
 	a = str[--i];
 	c = str[--i];
 	b = str[i];
-	if (a >= 56)
+	if (a >= 6)
 		ft_ppp(&c, &b);
 	str[i] = c;
 	str[++i] = '\0';

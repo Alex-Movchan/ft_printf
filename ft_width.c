@@ -108,18 +108,22 @@ char    *ft_plus(char *str, t_srt *lst)
 	int     j;
 
 	i = -1;
-	src = ft_strnew(ft_strlen(str) + 1);
-	j = -1;
-	while (ft_isdigit(str[++i]) == 0)
-		src[++j] = str[i];
-	if (j >= 0)
-		src[j] = lst->plus;
-	else
-		src[++j] = lst->plus;
-	while (str[i])
-		src[++j] = str[i++];
-	src[++j] = '\0';
-	src = ft_width(src, lst);
-	//ft_strdel(&str);
-	return (src);
+	if (lst->plus != '0')
+	{
+		src = ft_strnew(ft_strlen(str) + 1);
+		j = -1;
+		while (ft_isdigit(str[++i]) == 0)
+			src[++j] = str[i];
+		if (j >= 0)
+			src[j] = lst->plus;
+		else
+			src[++j] = lst->plus;
+		while (str[i])
+			src[++j] = str[i++];
+		src[++j] = '\0';
+		src = ft_width(src, lst);
+		ft_strdel(&str);
+		return (src);
+	}
+	return (str);
 }
