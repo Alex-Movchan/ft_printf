@@ -57,8 +57,8 @@ char	*ft_cast_al(va_list *ap, t_srt *lst)
 	str = ft_cast_a(ap, lst);
 	while (str[i])
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i] -= 32;
+		/*if (str[i] >= 97 && str[i] <= 122)
+			str[i] -= 32;*/
 		i++;
 	}
 	return (str);
