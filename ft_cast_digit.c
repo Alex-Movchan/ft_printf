@@ -22,7 +22,7 @@ char *ft_cast_di(va_list ap, t_srt *lst)
 	{
 		str = ft_itoa_base(-nbr, 10);
 		if (lst->width == -1)
-			lst->zero_or_minus = '0';
+		lst->zero_or_minus = '0';
 		lst->plus = '-';
 	}
 	else
@@ -40,10 +40,10 @@ char *ft_cast_di(va_list ap, t_srt *lst)
 	{
 		str = ft_plus2(str, lst);
 
-		if ((lst->accur > lst->width && lst->space == ' ' && lst->plus == '0')
+		if ((lst->accur > lst->width + 1 && lst->space == ' ' && lst->plus == '0')
 				|| (lst->width == -1 && lst->space == ' '))
 			str = ft_space(str, ' ', ((int) ft_strlen(str) + 1), lst);
-		else if (lst->plus == '0' && lst->accur == -1 && lst->space == ' ')
+		 else if (lst->plus == '0' && lst->accur == -1 && lst->space == ' ')
 			str[0] = ' ';
 	}
 	return (str);
