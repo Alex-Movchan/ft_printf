@@ -16,7 +16,7 @@ char *ft_getdouble(va_list *ap, t_srt *lst)
 {
 	if (lst->letar == 'F' || lst->letar == 'f')
 		return (ft_cast_f(ap, lst));
-	else if (lst->letar == 'e')
+	/*else if (lst->letar == 'e')
 		return (ft_cast_e(ap, lst));
 	else if (lst->letar == 'E')
 		return (ft_cast_el(ap, lst));
@@ -25,7 +25,7 @@ char *ft_getdouble(va_list *ap, t_srt *lst)
 	else if (lst->letar == 'G')
 		return (ft_cast_gi(ap, lst));
 	else if (lst->letar == 'A')
-		return (ft_cast_al(ap, lst));
+		return (ft_cast_al(ap, lst));*/
 	else if (lst->letar == 'a')
 		return (ft_cast_a(ap, lst));
 	else
