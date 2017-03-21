@@ -54,7 +54,7 @@ int flag_format(char c, t_srt *lst)
 		return (0);
 }
 
-int add_dot(const char *str, int *i, t_srt *lst, va_list *ap)
+int add_dot(const char *str, int *i, t_srt *lst, va_list ap)
 {
 	int len;
 
@@ -62,7 +62,7 @@ int add_dot(const char *str, int *i, t_srt *lst, va_list *ap)
 	{
 		if (str[(*i) + 1] == '*')
 		{
-			len = va_arg(*ap, int);
+			len = va_arg(ap, int);
 			if (len >= 0 && lst->accur == -1)
 				lst->accur = len;
 			(*i)++;

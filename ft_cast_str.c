@@ -1,11 +1,10 @@
 #include "ft_printf.h"
 
-char *ft_cest_str(va_list *ap, t_srt *lst)
+char *ft_cest_str(va_list ap, t_srt *lst)
 {
 	char *str;
-	int res;
 
-	str = va_arg(*ap, char *);
+	str = va_arg(ap, char *);
 	if (str == NULL)
 		str = "(null)";
 	else
@@ -40,12 +39,12 @@ int		ft_cast_chr(t_srt *lst, char *str)
 	return(1);
 }
 
-int 	ft_cast_char(va_list *ap, t_srt *lst)
+int 	ft_cast_char(va_list ap, t_srt *lst)
 {
 	char *str;
 
 	str = ft_strnew(1);
-	str[0]  = va_arg(*ap, int);
+	str[0]  = va_arg(ap, int);
 	str[1] = '\0';
 	if (str[0] == '\0')
 		return(ft_cast_chr(lst, str));

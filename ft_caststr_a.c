@@ -37,8 +37,9 @@ char ft_char(int a)
 {
 	char c;
 
+	c = '0';
 	if (a >= 0 && a <= 9)
-		c = a + '0';
+		c = a + 48;
 	else if (a == 10)
 		c = 'a';
 	else if (a == 11)

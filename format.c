@@ -60,13 +60,13 @@ void	ft_formate(const char *str, int *i, t_srt *lst)
 		lst->ap = 1;
 }
 
-t_srt	*ft_print_format(t_srt *lst, const char *str, int *i, va_list *ap)
+t_srt	*ft_print_format(t_srt *lst, const char *str, int *i, va_list ap)
 {
 	while (str[++(*i)] && lst->letar == '0')
 	{
 		ft_formate(str, i, lst);
 			if (str[(*i)] == '*' && (lst->width = -1))
-			lst->width = va_arg(*ap, int);
+			lst->width = va_arg(ap, int);
 		else if (add_dot(str, i, lst, ap) == 1)
 			;
 		else if (str[(*i)] == '{')
@@ -87,7 +87,7 @@ t_srt	*ft_print_format(t_srt *lst, const char *str, int *i, va_list *ap)
 	return (lst);
 }
 
-int		ft_format(const char *format, va_list *ap)
+int		ft_format(const char *format, va_list ap)
 {
 	t_srt	*list;
 	int		i;
@@ -97,14 +97,14 @@ int		ft_format(const char *format, va_list *ap)
 	i = -1;
 	res = 0;
 	list = (t_srt*)malloc(sizeof(t_srt));
-	va_copy(&tmp, *ap);
+	va_copy(tmp, ap);
 	while (format[++i] != '\0')
 	{
 		if (format[i] == '%')
 		{
 			list = inicial_struct(list);
 			list = ft_print_format(list, format, &i, ap);
-			res += ft_print(list, ap, &tmp);
+			res += ft_print(list, ap, tmp);
 			ft_argn(res, ap, list);
 		}
 		else

@@ -12,14 +12,14 @@
 
 #include "ft_printf.h"
 
-char *ft_cast_f(va_list *ap, t_srt *lst)
+char *ft_cast_f(va_list ap, t_srt *lst)
 {
 	long double nb;
 	char *str;
 
 	if (lst->size == 7 || lst->letar == 'F')
-		nb = va_arg(*ap, long double);
-	nb = (long double)va_arg(*ap, double);
+		nb = va_arg(ap, long double);
+	nb = (long double)va_arg(ap, double);
 	if (nb < 0)
 	{
 		lst->plus = '-';
@@ -33,15 +33,15 @@ char *ft_cast_f(va_list *ap, t_srt *lst)
 	return (str);
 }
 
-char *ft_cast_e(va_list *ap, t_srt *lst)
+char *ft_cast_e(va_list ap, t_srt *lst)
 {
 	double nb;
 	char *str;
 
 	if (lst->size == 7)
-		nb = va_arg(*ap, long double);
+		nb = va_arg(ap, long double);
 	else
-		nb = va_arg(*ap, double);
+		nb = va_arg(ap, double);
 	if (nb < 0)
 	{
 		lst->plus = '-';
@@ -54,7 +54,7 @@ char *ft_cast_e(va_list *ap, t_srt *lst)
 	return (str);
 }
 
-char *ft_cast_el(va_list *ap, t_srt *lst)
+char *ft_cast_el(va_list ap, t_srt *lst)
 {
 	char *str;
 	int i;

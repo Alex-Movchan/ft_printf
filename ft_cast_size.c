@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-intmax_t signed_size(va_list *ap, t_srt *lst)
+intmax_t signed_size(va_list ap, t_srt *lst)
 {
 	intmax_t nbr;
 
-	nbr = va_arg(*ap, intmax_t);
+	nbr = va_arg(ap, intmax_t);
 	if (lst->size == 1)
 		nbr = (signed char) nbr;
 	else if (lst->size == 2)
@@ -34,11 +34,11 @@ intmax_t signed_size(va_list *ap, t_srt *lst)
 	return (nbr);
 }
 
-uintmax_t unsigned_size(va_list *ap, t_srt *lst)
+uintmax_t unsigned_size(va_list ap, t_srt *lst)
 {
 	uintmax_t nbr;
 
-	nbr = va_arg(*ap, uintmax_t);
+	nbr = va_arg(ap, uintmax_t);
 	if (lst->size == 1)
 		nbr = (unsigned char) nbr;
 	else if (lst->size == 2)

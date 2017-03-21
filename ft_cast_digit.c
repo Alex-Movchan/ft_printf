@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char *ft_cast_di(va_list *ap, t_srt *lst)
+char *ft_cast_di(va_list ap, t_srt *lst)
 {
 	char *str;
 	intmax_t nbr;
@@ -48,7 +48,7 @@ char *ft_cast_di(va_list *ap, t_srt *lst)
 	}
 	return (str);
 }
-char    *ft_cast_unsigned(va_list *ap, t_srt *lst, int base)
+char    *ft_cast_unsigned(va_list ap, t_srt *lst, int base)
 {
 	char        *str;
 	uintmax_t   nbr;
@@ -67,7 +67,7 @@ char    *ft_cast_unsigned(va_list *ap, t_srt *lst, int base)
 	return (str);
 }
 
-char *ft_cast_xl(va_list *ap, t_srt *lst)
+char *ft_cast_xl(va_list ap, t_srt *lst)
 {
 	int i;
 	char *s;
@@ -82,18 +82,18 @@ char *ft_cast_xl(va_list *ap, t_srt *lst)
 	return (s);
 }
 
-char *ft_cast_dl(va_list *ap, t_srt *lst)
+char *ft_cast_dl(va_list ap, t_srt *lst)
 {
 	lst->size = 3;
 	return (ft_cast_di(ap, lst));
 }
 
-char *ft_cast_long(va_list *ap, t_srt *lst, int base)
+char *ft_cast_long(va_list ap, t_srt *lst, int base)
 {
 	char *str;
 	uintmax_t nb;
 
-	nb = va_arg(*ap, uintmax_t);
+	nb = va_arg(ap, uintmax_t);
 	nb = (unsigned long int) nb;
 	str = ft_itoa_base(nb, base);
 	if (lst->letar == 'U')

@@ -12,13 +12,13 @@
 
 #include "ft_printf.h"
 
-void ft_argn(int len, va_list *ap, t_srt *lst)
+void ft_argn(int len, va_list ap, t_srt *lst)
 {
 	int *tab;
 
 	if (lst->letar == 'n')
 	{
-		tab = va_arg(*ap, int*);
+		tab = va_arg(ap, int*);
 		*tab = len;
 	}
 }

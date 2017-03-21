@@ -77,7 +77,6 @@ char *ft_get_str_e(long double nb, t_srt *lst)
 	char *s;
 	char *s1;
 	int i;
-	int len;
 
 	i = 0;
 	nb = rang_e(nb, &i);

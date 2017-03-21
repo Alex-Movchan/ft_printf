@@ -1,10 +1,10 @@
 #include "ft_printf.h"
 
-void ft_argdolar(va_list *ap, va_list *tmp, int len)
+void ft_argdolar(va_list ap, va_list tmp, int len)
 {
-	va_copy(*ap, tmp);
+	va_copy(ap, tmp);
 	while (--len)
-		va_arg(*ap, int);
+		va_arg(ap, int);
 }
 
 char *ft_getchar(t_srt *lst)
@@ -22,7 +22,7 @@ char *ft_getchar(t_srt *lst)
 	return (NULL);
 }
 
-int ft_print(t_srt *lst, va_list *ap, va_list *tmp)
+int ft_print(t_srt *lst, va_list ap, va_list tmp)
 {
 	char *str;
 
@@ -36,6 +36,5 @@ int ft_print(t_srt *lst, va_list *ap, va_list *tmp)
 	}
 	else if (lst->letar == 'c' || lst->letar == 'C')
 		return (ft_cast_char(ap, lst));
-	else
-		return (0);
+	return (0);
 }

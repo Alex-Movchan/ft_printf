@@ -35,7 +35,7 @@ char *ft_str_dable_a(long double nb, int len, t_srt *lst)
 		i++;
 	}
 	s[i] = '\0';
-	if (ft_strlen(s) < lst->accur)
+	if ((int)ft_strlen(s) < lst->accur)
 	{
 		src = ft_strnew((size_t)lst->accur + 4);
 		s = ft_strcpychar(src, s, lst->accur + 4, '0');

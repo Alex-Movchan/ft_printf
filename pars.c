@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int ft_printformat(const char *str, int *i, t_srt *lst, va_list *ap)
+int ft_printformat(const char *str, int *i, t_srt *lst, va_list ap)
 {
 	int res;
 

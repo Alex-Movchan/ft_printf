@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void ft_color(const char *s, int *i, va_list *ap, t_srt *lst)
+void ft_color(const char *s, int *i, va_list ap, t_srt *lst)
 {
 	char *str;
 	int j;
@@ -33,7 +33,7 @@ void ft_color(const char *s, int *i, va_list *ap, t_srt *lst)
 		(ft_strcmp(str, "{eoc}") == 0))
 		ft_color_print(str);
 	else if (ft_strcmp(str, "{fd}") == 0)
-		lst->fd = va_arg(*ap, int);
+		lst->fd = va_arg(ap, int);
 	else
 		(*i) -= (j - 1);
 	ft_strdel(&str);

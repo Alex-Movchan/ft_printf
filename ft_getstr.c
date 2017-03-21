@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char *ft_getdouble(va_list *ap, t_srt *lst)
+char *ft_getdouble(va_list ap, t_srt *lst)
 {
 	if (lst->letar == 'F' || lst->letar == 'f')
 		return (ft_cast_f(ap, lst));
@@ -32,7 +32,7 @@ char *ft_getdouble(va_list *ap, t_srt *lst)
 		return (getstr(ap, lst));
 }
 
-char *get_str(va_list *ap, t_srt *lst)
+char *get_str(va_list ap, t_srt *lst)
 {
 	if (lst->letar == 'S' || (lst->letar == 's' && lst->size == 3))
 		return (ft_print_wchar_str(ap, lst));
@@ -42,7 +42,7 @@ char *get_str(va_list *ap, t_srt *lst)
 		return (ft_getdouble(ap, lst));
 }
 
-char *getstr(va_list *ap, t_srt *lst)
+char *getstr(va_list ap, t_srt *lst)
 {
 
 	if (lst->letar == 'p')

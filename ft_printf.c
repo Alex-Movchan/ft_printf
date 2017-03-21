@@ -19,7 +19,7 @@ int ft_printf(const char *format, ...)
 
 	res = 0;
 	va_start(ap, format);
-	res = ft_format(format, &ap);
+	res = ft_format(format, ap);
 	va_end(ap);
 	return (res);
 }

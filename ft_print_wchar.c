@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-char *ft_print_wchar_str(va_list *ap, t_srt *lst)
+char *ft_print_wchar_str(va_list ap, t_srt *lst)
 {
 	int i;
 	wchar_t *str;
@@ -21,7 +21,7 @@ char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 
 	j = -1;
 	i = 0;
-	str = va_arg(*ap, wchar_t *);
+	str = va_arg(ap, wchar_t *);
 	if (str == NULL)
 	{
 		src = "(null)";

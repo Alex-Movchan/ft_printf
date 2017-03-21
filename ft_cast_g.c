@@ -58,7 +58,7 @@ char *ft_get_str_eg(long double nb, t_srt *lst)
 	return (str);
 }
 
-char *ft_str_g(va_list *ap, t_srt *lst)
+char *ft_str_g(va_list ap, t_srt *lst)
 {
 	long double nb;
 	long double nbr;
@@ -66,9 +66,9 @@ char *ft_str_g(va_list *ap, t_srt *lst)
 	char *str;
 
 	if (lst->size == 7)
-		nb = (va_arg(*ap, long double));
+		nb = (va_arg(ap, long double));
 	else
-		nb = va_arg(*ap, double);
+		nb = va_arg(ap, double);
 	if (nb < 0)
 	{
 		nb = -nb;
@@ -78,7 +78,7 @@ char *ft_str_g(va_list *ap, t_srt *lst)
 	str = (itoa((intmax_t) nbr));
 	i = 0;
 	nbr = rang_e(nbr, &i);
-	if ((ft_strlen(str) == 6 && lst->accur == -1) || ft_strlen(str) == lst->accur)
+	if ((ft_strlen(str) == 6 && lst->accur == -1) || (int)ft_strlen(str) == lst->accur)
 		return (str);
 	if ((lst->accur != -1 && i != 0 && (i <= lst->accur || -i <= lst->accur)) || ft_strlen(str) > 6)
 		return (ft_get_str_eg(nb, lst));

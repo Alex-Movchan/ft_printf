@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void ft_base(uintmax_t nb, int base, int *i, char *s)
+static void ft_base(uintmax_t nb, uintmax_t base, int *i, char *s)
 {
 	char *str;
 
