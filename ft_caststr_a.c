@@ -103,16 +103,16 @@ char *ft_getstr_a(long double nb, t_srt *lst)
 	s1 = ft_pow_a(i);
 	if (lst->accur == 0)
 		return (ft_str_zero(nb, lst, s1));
-	if (lst->accur > 0)
+	/*if (lst->accur > 0)
 	{
 		s = ft_str_dable_a(nb, lst->accur + 1);
 		s = ft_strjoin(s, s1);
 	}
 	else
-	{
+	{*/
 		s = ft_str_dable_a(nb, 16);
 		s = ft_strjoin(s, s1);
-	}
+	//}
 	ft_strdel(&s1);
 	return (s);
 }
