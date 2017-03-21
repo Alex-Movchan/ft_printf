@@ -37,7 +37,7 @@ char	*ft_cast_a(va_list *ap, t_srt *lst)
 	else
 		nb = va_arg(*ap, double);
 	str = ft_getstr_a(nb, lst);
-	str = ft_width(str, lst);
+	//str = ft_width(str, lst);
 	str = ft_plus(str, lst);
 	return (str);
 }
