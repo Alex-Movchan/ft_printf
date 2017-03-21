@@ -6,110 +6,77 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 16:09:05 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/17 19:15:23 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/02/27 17:49:09 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-t_srt	*inicial_struct(t_srt *lst)
+t_struct	inicial_struct(t_struct *lst)
 {
+	if ((lst = (t_struct*)malloc(sizeof(t_struct))) == NULL)
+		return (NULL);
 	lst->letar = '0';
 	lst->zero_or_minus = '0';
 	lst->space = '0';
-	lst->plus = '0';
+	lst->plus_ = '0';
 	lst->hesh = 0;
 	lst->size = 0;
-	lst->accur = -1;
-	lst->width = -1;
+	lst->accur = 0;
+	lst->wudth = -1;
 	lst->rs = 0;
-	lst->fd = 1;
-	lst->ap = 0;
-	lst->dolar = 0;
-	lst->chr = '0';
+	lst->dot = 0;
+	lst->color = "\0";
 	return (lst);
 }
 
-int		atoidig(const char *str, int *i)
+t_struct	ft_print_format(t_struct *lst, const char *str, int *i, va_list *ap)
 {
-	int	nb;
-
-	nb = 0;
-	while (str[(*i)] >= 48 && str[(*i)] <= 57)
+	while (str[++(*i)] && str[(*i)] != '%' && lst->letar == '\0')
 	{
-		nb *= 10;
-		nb += ((int)str[(*i)] - 48);
-		(*i)++;
-	}
-	(*i)--;
-	return (nb);
-}
-
-void	ft_formate(const char *str, int *i, t_srt *lst)
-{
-	ft_specifiers(str, i, lst);
-	if (flag_format(str[(*i)], lst) == 1)
-		;
-	else if (ft_isdigit(str[(*i)]) == 1)
-		ft_width_or_dolar(str, i, lst);
-	else if (flag_format(str[(*i)], lst) == 1)
-		;
-	else if (str[(*i)] == '#')
-		lst->hesh = 1;
-	else if (str[(*i)] == '\'')
-		lst->ap = 1;
-}
-
-t_srt	*ft_print_format(t_srt *lst, const char *str, int *i, va_list *ap)
-{
-	while (str[++(*i)] && lst->letar == '0')
-	{
-		ft_formate(str, i, lst);
-			if (str[(*i)] == '*' && (lst->width = -1))
-			lst->width = va_arg(*ap, int);
-		else if (add_dot(str, i, lst, ap) == 1)
+		if (flag_fotmat(str[(*i)], lst) == 1)
+			;
+		else if (str[(*i)] == '#')
+			lst->hesh = 1;
+		else if (atoi(str, i) != 0)
+			lst->wudth = atoi(str, i);
+		else if (str[(*i)] =='*')
+			lst->wudth = va_arg(ap, int);
+		else if (add_dot(str, i, lst) == 1)
+			;
+		else if (specifiers(str, i, lst))
 			;
 		else if (str[(*i)] == '{')
-			ft_color(str, i, ap, lst);
+			ft_color(str, i, lst);
 		else if (tayp(str[(*i)]) == 1)
-		{
 			lst->letar = str[(*i)];
-			break ;
-		}
-		else if ((ft_strchr("1234567890'#+-.* Llhjz$", str[(*i)]) == NULL))
-		{
-			lst->chr = str[(*i)];
-			return (lst);
-		}
+		if ((ft_strchr("1234567890 #+-.* LsScCdDioOuUxXbpaAfFeE{ lhjz", str[(*i)]) == NULL))
+			break;
 	}
-	if (str[(*i)] == '\0')
-		(*i)--;
 	return (lst);
 }
 
-int		ft_format(const char *format, va_list *ap)
+int			ft_format(const char *format, va_list *ap)
 {
-	t_srt	*list;
-	int		i;
-	int		res;
-	va_list	tmp;
+	t_struct	*list;
+	int			i;
+	int			res;
 
 	i = -1;
 	res = 0;
-	list = (t_srt*)malloc(sizeof(t_srt));
-	va_copy(&tmp, *ap);
-	while (format[++i] != '\0')
+	while (format[++i])
 	{
 		if (format[i] == '%')
 		{
 			list = inicial_struct(list);
-			list = ft_print_format(list, format, &i, ap);
-			res += ft_print(list, ap, &tmp);
-			ft_argn(res, ap, list);
+			list = ft_print_format(lst, format, &i, ap);
+            res += list->rs;
 		}
 		else
-			res += ft_printformat(format, &i, list, ap);
-
+		{
+			ft_putchar(format[i]);
+			res++;
+		}
 	}
 	return (res);
 }

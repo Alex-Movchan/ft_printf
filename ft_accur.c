@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/27 17:54:06 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/17 19:16:54 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/01 14:13:50 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,18 @@
 
 char	*ft_strndup(char *str, int len)
 {
-	char	*src;
+    char	*src;
 
 	if (!(src = ft_strnew((size_t)len)))
 		return (NULL);
 	src = ft_strncpy(src, str, len);
-	src[len] = '\0';
-	if (ft_strcmp(str, "(null)") != 0)
-		free(str);
+	ft_strdel(&str);
 	return (src);
 }
 
-char	*ft_accur(char *str, t_srt *lst)
+char	*ft_accur(char *str, t_strucr *lst)
 {
-	if (lst->accur != -1)
+	if (lst->accur != 0)
 		return (ft_strndup(str, lst->accur));
 	else
 		return (str);

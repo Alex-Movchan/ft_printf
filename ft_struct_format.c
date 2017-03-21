@@ -12,22 +12,22 @@
 
 #include "ft_printf.h"
 
-int tayp(char c)
+int		tayp(char c)
 {
 	if (c == 's' || c == 'S' || c == 'p' || c == 'd')
 		return (1);
 	if (c == 'D' || c == 'i' || c == 'o' || c == 'O' || c == 'u')
 		return (1);
-	if (c == 'U' || c == 'x' || c == 'X' || c == 'c' || c == 'C')
+	if (c == 'U' || c == 'x' ||c == 'X' || c == 'c' || c =='C')
 		return (1);
 	if (c == 'f' || c == 'F' || c == 'e' || c == 'E')
 		return (1);
-	if (c == 'a' || c == 'A' || c == 'g' || c == 'G' || c == 'n')
+	if (c == 'a' || c == 'A' || c == 'g' || c == 'G')
 		return (1);
 	return (0);
 }
 
-int flag_format(char c, t_srt *lst)
+int		flag_format(char c, t_struct *lst)
 {
 	if (c == '-')
 	{
@@ -41,41 +41,47 @@ int flag_format(char c, t_srt *lst)
 	}
 	else if (c == '+')
 	{
-		lst->plus = '+';
-		lst->space = '0';
+		lst->plus_or_space = '+';
 		return (1);
 	}
-	else if (c == ' ' && lst->plus != '+')
+	else if (c == ' ' && lst->plus_or_space != '+')
 	{
-		lst->space = ' ';
+		lst->plus_or_zero = ' ';
 		return (1);
 	}
 	else
 		return (0);
 }
-
-int add_dot(const char *str, int *i, t_srt *lst, va_list *ap)
+int		atoi(const char *str, int *i)
 {
-	int len;
+	int	nbr;
 
+	nbr = 0;
+	while (str[(*i)] >= '0' && str[(*i)] <= '9')
+	{
+		nbr *= 10;
+		nbr += ((int)str[(*i)] - 48);
+		i++;
+	}
+	return (nbr);
+}
+
+int		add_dot(const char *str, int *i, t_struct *lst, va_list *ap)
+{
 	if (str[(*i)] == '.')
 	{
-		if (str[(*i) + 1] == '*')
+		lst->dot = 1;
+		if (str[(*i) + 1] == '*')//va_arg?
 		{
-			len = va_arg(*ap, int);
-			if (len >= 0 && lst->accur == -1)
-				lst->accur = len;
-			(*i)++;
+			lst->accur = va_arg(*ap, int);
 			return (1);
 		}
-		else
+		else if (atoi(str, ++(*i)) != 0)
 		{
-			(*i)++;
-			len = atoidig(str, i);
-			if (lst->accur == -1)
-				lst->accur = len;
+			lst->accur = atoi(str, i);
 			return (1);
 		}
+		return (1);
 	}
 	return (0);
 }

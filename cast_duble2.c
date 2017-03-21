@@ -6,19 +6,19 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 21:44:21 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/17 19:06:33 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/01 21:54:08 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_cast_gi(va_list *ap, t_srt *lst)
+char	*ft_cast_G(va_list *ap, t_struct *lst)
 {
 	char	*str;
 	int		i;
 
 	i = 0;
-	str = ft_str_g(ap, lst);
+	str = ft_cast_g(ap, lst);
 	while (str[i])
 	{
 		str[i] = ft_toupper(str[i]);
@@ -27,28 +27,22 @@ char	*ft_cast_gi(va_list *ap, t_srt *lst)
 	return (str);
 }
 
-char	*ft_cast_a(va_list *ap, t_srt *lst)
+char	*ft_cast_a(va_list *ap,t_struct *lst)
 {
-	double	nb;
-	char	*str;
+    long double nb;
+    char        *str;
 
-	if (lst->size == 7)
-		nb = va_arg(*ap, long double);
+    nb = va_arg(*ap, long double);
+    str = ft_get_str_e(nb, lst);
+	if (lst->accur > lsr->width && lst_space == ' ')
+		str = ft_strcpy_rev(src, str, ' ', ((int)ft_strlen(str) + 1));
 	else
-		nb = va_arg(*ap, double);
-	if (nb < 0)
-	{
-		lst->plus = '-';
-		str = ft_getstr_a(-nb, lst);
-	}
-	else
-		str = ft_getstr_a(nb, lst);
-	str = ft_width(str, lst);
-	str = ft_plus(str, lst);
-	return (str);
+    	str = ft_width(str,lst);
+    str = ft_plus(str, lst);
+    return (str);
 }
 
-char	*ft_cast_al(va_list *ap, t_srt *lst)
+char	*ft_cast_A(va_list *ap, t_struct *lst)
 {
 	char	*str;
 	int		i;

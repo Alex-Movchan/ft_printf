@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-long double rang(long double nb, int *i)
+long double   rang(long double nb, int *i)
 {
 	if (nb < 1)
 	{
-		while ((int) nb != 1)
+		while ((int)nb != 1)
 		{
 			nb *= 2;
 			(*i)--;
@@ -24,7 +24,7 @@ long double rang(long double nb, int *i)
 	}
 	else if (nb > 1)
 	{
-		while ((int) nb != 1)
+		while ((int)nb != 1)
 		{
 			nb /= 2;
 			(*i)++;
@@ -33,12 +33,12 @@ long double rang(long double nb, int *i)
 	return (nb);
 }
 
-char ft_char(int a)
+char	ft_char(int a)
 {
-	char c;
+	char	c;
 
 	if (a >= 0 && a <= 9)
-		c = (char) a + '0';
+		c = (char)a +'0';
 	else if (a == 10)
 		c = 'a';
 	else if (a == 11)
@@ -51,28 +51,28 @@ char ft_char(int a)
 		c = 'e';
 	else if (a == 15)
 		c = 'f';
+	printf("%c\n", c);
 	return (c);
 }
 
-char *ft_strs(char *s, int *i, int nb)
+char    *ft_strs(char   *s, int *i, int nb)
 {
-	char *s1;
+	char	*s1;
 
 	s1 = ft_itoa(nb);
-	s[(*i)++] = '0';
-	s[(*i)++] = 'x';
-	s[(*i)++] = s1[0];
-	s[(*i)] = '\0';
+    s[(*i)++] = '0';
+    s[(*i)++] = 'x';
+    s[(*i)++] = s1[0];
 	ft_strdel(&s1);
-	return (s);
+    return (s);
 }
 
-char *ft_pow_a(int pow)
+char	*ft_pow_a(int pow)
 {
-	char *s1;
-	char *s2;
+	char	*s1;
+	char	*s2;
 
-	s1 = ft_strnew(1);
+	s1 = ft_strnew(2);
 	s1[0] = 'p';
 	if (pow < 0)
 	{
@@ -89,29 +89,30 @@ char *ft_pow_a(int pow)
 	return (s1);
 }
 
-char *ft_getstr_a(long double nb, t_srt *lst)
+char	*ft_caststr_a(long double nb, t_struct *lst)
 {
-	int i;
-	char *s;
-	char *s1;
+	int		i;
+	char	*s;
+	char	*s1;
 
 	if (nb == 0.0)
 		return ("0x0p+0");
 	i = 0;
 	nb = rang(nb, &i);
-	s1 = ft_pow_a(i);
-	if (lst->accur == 0)
-		return (ft_str_zero(nb, lst, s1));
+	s1 = ost(i);
 	if (lst->accur > 0)
 	{
-		s = ft_str_dable_a(nb, lst->accur + 1);
-		s = ft_strjoin(s, s1);
+		s = ft_str_doublea(nb, lst->accur + 1);
+		s = ;
 	}
+	else if (lst->accur == 0)
+		s = ft_str_zero(nb);
 	else
 	{
-		s = ft_str_dable_a(nb, 14);
-		s = ft_strjoin(s, s1);
+		s = ft_str_doublea(nb, 18);
+		s = ;
 	}
+	s = ft_strjoin(s, s1);
 	ft_strdel(&s1);
-	return (s);
+	return(s);
 }

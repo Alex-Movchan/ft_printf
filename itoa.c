@@ -12,9 +12,16 @@
 
 #include "ft_printf.h"
 
-static int ft_lenint(long long int n)
+static intmax_t		ft_isnegativ(intmax_t n)
 {
-	int len;
+	if (n < 0)
+		return (-n);
+	return (n);
+}
+
+static intmax_t		ft_len_int(intmax_t n)
+{
+	int	len;
 
 	len = 0;
 	if (n <= 0)
@@ -26,27 +33,22 @@ static int ft_lenint(long long int n)
 	}
 	return (len);
 }
-long long int	isnegativ(long long int n)
+
+char				*itoa(intmax_t n)
 {
-	if (n < 0)
-		return (-n);
-	return (n);
-}
+	uintmax_t	nbr;
+	int			len;
+	char		*str;
 
-
-char *itoa(long long int n)
-{
-	int len;
-	long long int nbr;
-	char *str;
-
-	nbr = isnegativ(n);
-	len = ft_lenint(n);
-	str = ft_strnew((size_t)len + 1);
+	len = 0;
+	len = ft_len_int(n);
+	if (!(str = (char *)malloc(sizeof(*str) * (len + 1))))
+		return (NULL);
 	str[len--] = '\0';
+	nbr = ft_isnegativ(n);
 	while (len >= 0)
 	{
-		str[len--] = (char)(nbr % 10 + '0');
+		str[len--] = nbr % 10 + 48;
 		nbr = nbr / 10;
 	}
 	if (n < 0)

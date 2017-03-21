@@ -1,84 +1,49 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_accur_digits.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/17 19:17:30 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/17 19:23:48 by amovchan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
-char	*ft_accur_digits(char *str, t_srt *lst)
+char    *ft_accur_digits(char *str, t_struct *lst)
 {
-	char	*src;
+    char *src;
 
-	if (lst->accur != -1)
-	{
-		if (lst->accur == 0 && str[0] == '0')
-			return ("\0");
-		if ((int)ft_strlen(str) < lst->accur)
-		{
-			if ((src = ft_strnew((size_t)lst->accur)) == NULL)
-				return (NULL);
-			if (lst->zero_or_minus == '1')
-			{
-				lst->zero_or_minus = '0';
-				lst->space = ' ';
-			}
-			return (ft_strcpy_rev(src, str, '0', lst->accur));
-		}
-
-	}
-	return (str);
+    if (lst->accur != 0)
+    {
+        if ((int) ft_strlen(str) < lst->accur)
+        {
+            if ((src = ft_strnew((size_t) lst->width)) == NULL)
+                return (NULL);
+            if (lst->zero_or_minus == '1')
+            {
+                lst->zero_or_minus = '0';
+                lst->space = ' ';
+            }
+            return (ft_strcpy_rev(src, str, '0', lst->accur));
+        }
+    }
+    return (str);
 }
 
-char 	*ft_hesh(t_srt *lst, char *str)
+char    *strhesh(char *str, t_struct *lst)
 {
-	str = ft_width(str, lst);
-	str[0] = '0';
-	str[1] = 'x';
-	return (str);
-}
-char	*ft_strhesh(char *str, t_srt *lst)
-{
-	char	*src;
-	int		i;
-	int		j;
+    char    *src;
+    int     i;
+    int     j;
 
-
-	j = -1;
-	i = 0;
-	if ((lst->hesh == 1) && (lst->letar == 'x' || lst->letar == 'p' || lst->letar == 'X'))
-	{
-		if (lst->width != -1 && lst->zero_or_minus == '1')
-			return (ft_hesh(lst, str));
-		src = ft_strnew(ft_strlen(str) + 2);
-		src[i++] = '0';
-		src[i++] = 'x';
-		while (str[++j])
-			src[i++] = str[j];
-		src[i] = '\0';
-		if (str[0] != '\0')
-			ft_strdel(&str);
-		return (ft_width(src, lst));
-	}
-	else if (lst->hesh == 1 && (lst->letar == 'o' || lst->letar == 'O'))
-		return (ft_space(str, '0', ((int)ft_strlen(str) + 1), lst));
-	str = ft_width(str, lst);
-	return (str);
-}
-
-char	*ft_space(char *str, char c, int len, t_srt *lst)
-{
-	char	*src;
-
-	src = ft_strnew((size_t)len);
-	src = ft_strcpy_rev(src, str, c, len);
-	if (lst->hesh == 1 && (lst->letar == 'o' || lst->letar == 'O'))
-	return (ft_width(src, lst));
-	return (src);
+    i = 0;
+    j = 0;
+    if ((lst->hesh == 1) && (lst->letar == 'x'))
+    {
+        src = ft_strnew(ft_strlen(str) + 2);
+        src[i++] = '0';
+        src[i++] = 'x';
+        while (str[j])
+        {
+            src[i] = str[j];
+            i++;
+            j++;
+        }
+        ft_strdel(&str);
+        return (src);
+    }
+    else if (lst->hesh == 1 && (lst->letar == 'o' || lst->letar == 'O'))
+            return (ft_strcpy_rev(src, str, '0', ((int)ft_strlen(str) + 1)));
+    return (str);
 }

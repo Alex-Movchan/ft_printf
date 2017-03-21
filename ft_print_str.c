@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
+/*   ft_print_str.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/26 18:00:03 by amovchan          #+#    #+#             */
-/*   Updated: 2017/02/26 19:45:30 by amovchan         ###   ########.fr       */
+/*   Created: 2017/02/26 17:49:24 by amovchan          #+#    #+#             */
+/*   Updated: 2017/02/27 17:53:29 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "ft_printf.h"
 
-
-int	ft_print(va_list *ap, t_struct *lst)
+ft_print_str(va_list *ap, t_struct *lst)
 {
-    char    *str;
+	char	*s;
+	int		i;
 
-    if ((str = ft_format_print(ap, lst)) == NULL)
-        return (0);
-
+	i = 0;
+	s = va_arg(*ap, char*);
+	while (s[i])//?
+	{
+		ft_putchar(s[i]);
+		i++;
+	}
+	lst->rs += i;
 }
