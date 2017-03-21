@@ -97,7 +97,7 @@ char *ft_okrug_a(char *str)
 	a = str[--i];
 	c = str[--i];
 	b = str[i];
-	if (a >= 6)
+	if (a >= '8')
 		ft_ppp(&c, &b);
 	str[i] = c;
 	str[++i] = '\0';

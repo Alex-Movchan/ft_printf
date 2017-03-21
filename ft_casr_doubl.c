@@ -20,7 +20,13 @@ char *ft_cast_f(va_list *ap, t_srt *lst)
 	if (lst->size == 7 || lst->letar == 'F')
 		nb = va_arg(*ap, long double);
 	nb = (long double)va_arg(*ap, double);
-	str = ft_str_double(nb, lst);
+	if (nb < 0)
+	{
+		lst->plus = '-';
+		str = ft_str_double(-nb, lst);
+	}
+	else
+		str = ft_str_double(nb, lst);
 	str = ft_width(str, lst);
 	if (lst->plus != '0')
 		str = ft_plus(str, lst);
@@ -36,7 +42,13 @@ char *ft_cast_e(va_list *ap, t_srt *lst)
 		nb = va_arg(*ap, long double);
 	else
 		nb = va_arg(*ap, double);
-	str = ft_get_str_e(nb, lst);
+	if (nb < 0)
+	{
+		lst->plus = '-';
+		str = ft_get_str_e(-nb, lst);
+	}
+	else
+		str = ft_get_str_e(nb, lst);
 	str = ft_width(str, lst);
 	str = ft_plus(str, lst);
 	return (str);

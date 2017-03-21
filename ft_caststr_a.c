@@ -98,7 +98,6 @@ char *ft_getstr_a(long double nb, t_srt *lst)
 	if (nb == 0.0)
 		return ("0x0p+0");
 	i = 0;
-
 	nb = rang(nb, &i);
 	s1 = ft_pow_a(i);
 	if (lst->accur == 0)
@@ -110,7 +109,7 @@ char *ft_getstr_a(long double nb, t_srt *lst)
 	}
 	else
 	{
-		s = ft_str_dable_a(nb, 16);
+		s = ft_str_dable_a(nb, 14);
 		s = ft_strjoin(s, s1);
 	}
 	ft_strdel(&s1);

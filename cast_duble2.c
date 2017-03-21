@@ -36,8 +36,14 @@ char	*ft_cast_a(va_list *ap, t_srt *lst)
 		nb = va_arg(*ap, long double);
 	else
 		nb = va_arg(*ap, double);
-	str = ft_getstr_a(nb, lst);
-	//str = ft_width(str, lst);
+	if (nb < 0)
+	{
+		lst->plus = '-';
+		str = ft_getstr_a(-nb, lst);
+	}
+	else
+		str = ft_getstr_a(nb, lst);
+	str = ft_width(str, lst);
 	str = ft_plus(str, lst);
 	return (str);
 }
