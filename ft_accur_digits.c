@@ -22,8 +22,12 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 			return ("\0");
 		if ((int)ft_strlen(str) < lst->accur)
 		{
-			if ((src = ft_strnew((size_t)lst->accur)) == NULL)
-				return (NULL);
+            if (lst->accur == 0 && lst->width != -1 && lst->zero_or_minus == '1')
+            {
+                lst->space = ' ';
+                lst->zero_or_minus = '0';
+            }
+            src = ft_strnew((size_t)lst->accur);
 			return (ft_strcpy_rev(src, str, '0', lst->accur));
 		}
 
