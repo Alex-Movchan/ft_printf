@@ -21,7 +21,7 @@ char	*ft_cast_gi(va_list *ap, t_srt *lst)
 	str = ft_str_g(ap, lst);
 	while (str[i])
 	{
-		str[i] = ft_toupper(str[i]);
+		str[i] = (char)ft_toupper(str[i]);
 		i++;
 	}
 	return (str);
@@ -57,7 +57,8 @@ char	*ft_cast_al(va_list *ap, t_srt *lst)
 	str = ft_cast_a(ap, lst);
 	while (str[i])
 	{
-		str[i] = ft_toupper(str[i]);
+		if (ft_isalpha(str[i]) == 1)
+			str[i] = (char)ft_toupper(str[i]);
 		i++;
 	}
 	return (str);
