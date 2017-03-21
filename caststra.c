@@ -10,7 +10,7 @@ char *ft_str_dable_a2(long double nb, int len, t_srt *lst)
 	i = 0;
 	len += 4;
 	s = ft_strnew(len);
-	s = ft_strs(s, &i, 1);
+	s = ft_strs2(s, &i, 1);
 	nb -= 1.0;
     if (nb != 0)
         s[i++] = '.';
