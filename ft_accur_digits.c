@@ -22,12 +22,13 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 			return ("\0");
 		if ((int)ft_strlen(str) < lst->accur)
 		{
-            if (lst->accur == 0 && lst->width != -1 && lst->zero_or_minus == '1')
-            {
-                lst->space = ' ';
-                lst->zero_or_minus = '0';
-            }
-            src = ft_strnew((size_t)lst->accur);
+			if ((src = ft_strnew((size_t)lst->accur)) == NULL)
+				return (NULL);
+			if (lst->zero_or_minus == '1')
+			{
+				lst->zero_or_minus = '0';
+				lst->space = ' ';
+			}
 			return (ft_strcpy_rev(src, str, '0', lst->accur));
 		}
 
@@ -61,8 +62,7 @@ char	*ft_strhesh(char *str, t_srt *lst)
 		while (str[++j])
 			src[i++] = str[j];
 		src[i] = '\0';
-		if (str[0] != '\0')
-			ft_strdel(&str);
+		ft_strdel(&str);
 		return (ft_width(src, lst));
 	}
 	else if (lst->hesh == 1 && (lst->letar == 'o' || lst->letar == 'O'))
