@@ -12,7 +12,8 @@ char *ft_str_dable_a2(long double nb, int len, t_srt *lst)
 	s = ft_strnew(len);
 	s = ft_strs(s, &i, 1);
 	nb -= 1.0;
-	s[i++] = '.';
+    if (nb != 0)
+        s[i++] = '.';
 
 	while (i < len && nb != 0)
 	{
