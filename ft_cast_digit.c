@@ -28,7 +28,7 @@ char *ft_cast_di(va_list ap, t_srt *lst)
 	else
 		str = itoa(nbr);
 	str = ft_apostroph(str, lst);
-	str = ft_accur_digits(str, lst);
+	
 	if (lst->accur == 0 && lst->width != -1 && lst->zero_or_minus == '1')
 	{
 		lst->space = ' ';
@@ -40,12 +40,13 @@ char *ft_cast_di(va_list ap, t_srt *lst)
 	{
 		str = ft_plus2(str, lst);
 
-		//if ((lst->accur > lst->width && lst->space == ' ' && lst->plus == '0')
-		//		|| (lst->width == -1 && lst->space == ' '))
-		//	str = ft_space(str, ' ', ((int) ft_strlen(str) + 1), lst);
-		 if (lst->plus == '0' && lst->accur == -1 && lst->space == ' ')
+		if ((lst->accur > lst->width && lst->space == ' ' && lst->plus == '0')
+				|| (lst->width == -1 && lst->space == ' '))
+			str = ft_space(str, ' ', ((int) ft_strlen(str) + 1), lst);
+		 else if (lst->plus == '0' && lst->accur == -1 && lst->space == ' ')
 			str[0] = ' ';
 	}
+    str = ft_accur_digits(str, lst);
 	return (str);
 }
 char    *ft_cast_unsigned(va_list ap, t_srt *lst, int base)
