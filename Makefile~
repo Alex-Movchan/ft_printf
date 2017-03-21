@@ -6,7 +6,7 @@
 #    By: amovchan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/17 20:47:06 by amovchan          #+#    #+#              #
-#    Updated: 2017/03/21 19:49:59 by amovchan         ###   ########.fr        #
+#    Updated: 2017/03/17 21:06:29 by amovchan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -45,9 +45,8 @@ SRC =	ft_cast_size.c \
 		ft_apostroph.c \
 		ft_casr_doubl.c \
 		ft_cast_digit.c \
-		ft_cast_g.c \
-		caststr_a.c \
-		caststra.c
+		ft_cast_g.c
+
 HDR = ft_printf.h
 
 OBJ = $(SRC:.c=.o)
