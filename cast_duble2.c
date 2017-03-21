@@ -50,16 +50,21 @@ char	*ft_cast_a(va_list ap, t_srt *lst)
 
 char	*ft_cast_al(va_list ap, t_srt *lst)
 {
+	double	nb;
 	char	*str;
-	int		i;
 
-	i = 0;
-	str = ft_cast_a(ap, lst);
-	while (str[i])
+	if (lst->size == 7)
+		nb = va_arg(ap, long double);
+	else
+		nb = va_arg(ap, double);
+	if (nb < 0)
 	{
-		if (str[i] >= 97 && str[i] <= 122)
-			str[i] -= 32;
-		i++;
+		lst->plus = '-';
+		str = ft_getstr_a2(-nb, lst);
 	}
+	else
+		str = ft_getstr_a2(nb, lst);
+	str = ft_width(str, lst);
+	str = ft_plus(str, lst);
 	return (str);
 }

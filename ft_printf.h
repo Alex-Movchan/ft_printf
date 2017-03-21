@@ -98,6 +98,13 @@ int                 ft_printformat(const char *str, int *i, t_srt *lst, va_list 
 void                ft_width_or_dolar(const char *str, int *i, t_srt *lst);
 char 				*ft_plus2(char *str, t_srt *lst);
 char 				*ft_strcpychar(char *s1, char *s2, int j, char c);
-
+char 				*ft_str_dable_a2(long double nb, int len, t_srt *lst);
+void 				ft_ppp2(char *c, char *b);
+char 				*ft_getstr_a2(long double nb, t_srt *lst);
+char 				*ft_strs2(char *s, int *i, int nb);
+char				*ft_pow_a2(int pow);
+char 				ft_char2(int a);
+char 				*ft_str_zero2(long double nb, t_srt *lst, char *s);
+char 				*ft_okrug_a2(char *str);
 
 #endif
