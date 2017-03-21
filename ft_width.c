@@ -34,7 +34,7 @@ char *ft_strcpy_rev(char *s1, char *s2, char c, int j)
 	return (s1);
 }
 
-char *ft_strcpychar(char *s1, char *s2, int j)
+char *ft_strcpychar(char *s1, char *s2, int j, char c)
 {
 	int i;
 
@@ -46,7 +46,7 @@ char *ft_strcpychar(char *s1, char *s2, int j)
 	}
 	while (i < j)
 	{
-		s1[i] = ' ';
+		s1[i] = c;
 		i++;
 	}
 	s1[i] = '\0';
@@ -67,14 +67,13 @@ char *ft_width(char *str, t_srt *lst)
 		}
 		if ((int) ft_strlen(str) < lst->width)
 		{
-			if ((src = ft_strnew((size_t) lst->width)) == NULL)
-				return (NULL);
+			src = ft_strnew((size_t) lst->width);
 			if (lst->zero_or_minus == '1')
 				return (ft_strcpy_rev(src, str, '0', lst->width));
 			else if (lst->space == ' ')
 				return (ft_strcpy_rev(src, str, ' ', lst->width));
 			else if (lst->zero_or_minus == '-')
-				return (ft_strcpychar(src, str, lst->width));
+				return (ft_strcpychar(src, str, lst->width, ' '));
 			return (ft_strcpy_rev(src, str, ' ', lst->width));
 		}
 		else

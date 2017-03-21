@@ -46,7 +46,7 @@ char	            *ft_cast_e(va_list *ap,t_srt *lst);
 char	            *ft_cast_el(va_list *ap, t_srt *lst);
 char	            *ft_cast_gi(va_list *ap, t_srt *lst);
 char	            *ft_cast_a(va_list *ap,t_srt *lst);
-char	            *ft_str_dable_a(long double nb, int len);
+char	            *ft_str_dable_a(long double nb, int len, t_srt *lst);
 char	            *ft_str_zero(long double nb, t_srt *lst, char *s);
 void	            ft_ppp(char *c, char *b);
 char	            *ft_okrug_a(char *str);
@@ -97,6 +97,7 @@ char                *ft_str_g(va_list *ap, t_srt *lst);
 int                 ft_printformat(const char *str, int *i, t_srt *lst, va_list *ap);
 void                ft_width_or_dolar(const char *str, int *i, t_srt *lst);
 char 				*ft_plus2(char *str, t_srt *lst);
+char 				*ft_strcpychar(char *s1, char *s2, int j, char c);
 
 
 #endif

@@ -12,11 +12,12 @@
 
 #include "ft_printf.h"
 
-char *ft_str_dable_a(long double nb, int len)
+char *ft_str_dable_a(long double nb, int len, t_srt *lst)
 {
 	int i;
 	int a;
 	char *s;
+	char *src;
 
 	i = 0;
 	len += 4;
@@ -34,6 +35,12 @@ char *ft_str_dable_a(long double nb, int len)
 		i++;
 	}
 	s[i] = '\0';
+	if (ft_strlen(s) < lst->accur)
+	{
+		src = ft_strnew((size_t)lst->accur + 4);
+		s = ft_strcpychar(src, s, lst->accur + 4, '0');
+	}
+
 	if (nb == 0 && len > i)
 		return (s);
 	return (ft_okrug_a(s));
