@@ -12,100 +12,107 @@
 
 #include "ft_printf.h"
 
-int		ft_pow(int	nb, int pow)
+char *ft_pow(long double nb, int len)
 {
-	int	nbr;
+	int i;
+	char *str;
+	char *src;
 
-	nbr = nb;
-	while (pow > 1)
+	i = -1;
+	str = ft_strnew((size_t) len);
+	while (len > 0)
 	{
-		nbr *= nb;
-		pow--;
+		if (nb < 1)
+			str[++i] = '0';
+		nb *= 10;
+		len--;
 	}
-	return (nbr);
+	str[i] = '\0';
+	nb = ft_r_nbr(nb);
+	src = ft_itoa((int) nb);
+	if (i > -1)
+		src = ft_strjoin(str, src);
+	ft_strdel(&str);
+	return (src);
 }
 
-char    *ft_cast(char *s1, char *s2)
+char *ft_cast(char *s1, char *s2)
 {
-	char    *s;
-	int		i;
-	int		j;
-	int		len;
+	char *s;
+	int i;
+	int j;
+	int len;
 
-    i = 0;
+	i = 0;
 	j = 0;
-	len = ft_strlen(s1) + ft_strlen(s2) + 2;
-	s = (char*)malloc(sizeof(char) * len);
+	len = (int) ft_strlen(s1) + (int) ft_strlen(s2) + 1;
+	s = (char *) malloc(sizeof(char) * len);
 	while (s1[i])
 	{
 		s[i] = s1[i];
 		i++;
 	}
 	s[i++] = '.';
-	while (i <= len)
+	while (i < len)
 	{
 		s[i] = s2[j];
 		j++;
 		i++;
 	}
+	s[i] = '\0';
 	return (s);
 }
 
-char	*ft_okrugl(char *s)
-{
-	int		i;
-	char	c;
-	char	b;
 
-	i = ftstrlen(s);
-	b = s[--i];
-	c = s[--i];
-	if (b == '5' && c % 2 == 0)
-		c += 1;
-	else if (b > '5')
-		c += 1;
-	s[i] = c;
-	s[++i] = '\0';
-	return (s);
+char *ft_okrug(long double nb, t_srt *lst)
+{
+	char *str;
+	char *src;
+	int i;
+
+	i = 0;
+	nb = ft_r_nbr(nb);
+	str = ft_itoa((int) nb);
+	str = ft_apostroph(str, lst);
+	if (lst->hesh == 1)
+	{
+		src = ft_strnew((ft_strlen(str) + 1));
+		while (str[i])
+		{
+			src[i] = str[i];
+			i++;
+		}
+		src[i] = '.';
+		src[++i] = '\0';
+		ft_strdel(&str);
+		return (src);
+	}
+	return (str);
 }
 
-char	*ft_okrug(long double nb)
+char *ft_str_double(long double nb, t_srt *lst)
 {
-	int	a;
+	char *s1;
+	char *s2;
+	long double a;
+	int len;
 
-	a = (int)nb;
-	nb -= (long double)a;
-	nb *= 10;
-	if (a % 2 == 1 && (int)nb == 5)
-		a += 1;
-	else if ((int) nb > 5)
-		a += 1;
-	return (ft_itoa(a));
-}
-
-char    *ft_str_double(long double nb, t_struct *lst)
-{
-    char		*s1;
-    char		*s2;
-    long double	a;
-    long double	b;
-	int			len;
-
-	a = (int)nb;
+	if (lst->accur == 0)
+		return (ft_okrug(nb, lst));
+	a = (long long int) nb;
 	nb -= a;
-	len = 7;
+	len = 6;
 	if (lst->accur > 0)
-		len = lst->accur + 1;
-	else if (lst->accur == 0)
-		return (ft_okrug(nb));
-	b = ft_pow(10, len);
-	nb *= b;
+		len = lst->accur;
 	if (nb == 0.0)
 		s2 = ft_zero(len);
-	s2 = ft_itoa((int)nb);
-	s1 = ft_itoa((int)a);
+	if (nb < 0)
+		s2 = ft_pow(-nb, len);
+	else
+	s2 = ft_pow(nb, len);
+	s1 = itoa((long long int)a);
+	s1 = ft_apostroph(s1, lst);
 	s1 = ft_cast(s1, s2);
 	ft_strdel(&s2);
-	s1 = ft_okrugl(s1);
 	return (s1);
 }

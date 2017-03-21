@@ -1,23 +1,41 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_print.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/26 18:00:03 by amovchan          #+#    #+#             */
-/*   Updated: 2017/02/26 19:45:30 by amovchan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "ft_printf.h"
 
-
-int	ft_print(va_list *ap, t_struct *lst)
+void ft_argdolar(va_list *ap, va_list *tmp, int len)
 {
-    char    *str;
+	va_copy(*ap, tmp);
+	while (--len)
+		va_arg(*ap, int);
+}
 
-    if ((str = ft_format_print(ap, lst)) == NULL)
-        return (0);
+char *ft_getchar(t_srt *lst)
+{
+	char *str;
 
+	if (lst->chr != '0')
+	{
+		str = ft_strnew(1);
+		str[0] = lst->chr;
+		str[1] = '\0';
+		str = ft_width(str, lst);
+		return (str);
+	}
+	return (NULL);
+}
+
+int ft_print(t_srt *lst, va_list *ap, va_list *tmp)
+{
+	char *str;
+
+
+	if (lst->dolar != 0)
+		ft_argdolar(ap, tmp, lst->dolar);
+	else if ((str = get_str(ap, lst)) != NULL || (str = ft_getchar(lst)) != NULL)
+	{
+		ft_putstr_fd(str, lst->fd);
+		return ((int) ft_strlen(str));
+	}
+	else if (lst->letar == 'c' || lst->letar == 'C')
+		return (ft_cast_char(ap, lst));
+	else
+		return (0);
 }

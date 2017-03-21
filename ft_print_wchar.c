@@ -12,58 +12,92 @@
 
 #include "ft_printf.h"
 
-void	ft_print_wchar_str(va_list *ap, t_struct *lst)
+char *ft_print_wchar_str(va_list *ap, t_srt *lst)
 {
-	in		i;
-	wchar_t	*str;
+	int i;
+	wchar_t *str;
+	char *src;
+	int j;
 
+	j = -1;
 	i = 0;
-	str = va_arg(*ap, wchar_t*);
-	while (str[i])
+	str = va_arg(*ap, wchar_t *);
+	if (str == NULL)
 	{
-		lst->rs += ft_print_wchar(str[i]);
-		i++;
+		src = "(null)";
+		src = ft_accur(src, lst);
+		src = ft_width(src, lst);
+		return (src);
 	}
+	else
+		src = (char *) malloc(sizeof(char) * (lst->accur + 1));
+		while (str[i])
+		{
+			ft_print_wchar(str[i], src, &j);
+			i++;
+		}
+		src[++j] = '\0';
+	src = ft_accur(src, lst);
+	src = ft_width(src, lst);
+	//src = ft_accur(src, lst);
+	//free(str);
+	return (src);
 }
 
-int		ft_print_wchar(wchar_t c)
+void ft_print_wchar(wchar_t c, char *str, int *i)
 {
 	if (c <= 0x7F)
 	{
-		ft_putchar(c);
-		return (1);
+		str[++(*i)] = (char) c;
 	}
 	else if (c <= 0x7FF)
 	{
-		ft_putchar((c >> 6) + 0xC0);
-		ft_putchar((c & 0x3F) + 0x80);
-		return (2);
+		str[++(*i)] = (char) ((c >> 6) + 0xC0);
+		str[++(*i)] = (char) ((c & 0x3F) + 0x80);
 	}
 	else if (c <= 0xFFFF)
 	{
-		ft_putchar((c >> 12) + 0xE0);
-		ft_putchar(((c >> 6) & 0x3F) + 0x80);
-		ft_putchar((c & 0x3F) + 0x80)
-		return (3);
-		}
-		else if (c <= 0x10FFFF)
-		{
-			ft_putchar((c >> 18) + 0xF0);
-			ft_putchar(((c >> 12) & 0x3F) + 0x80);
-			ft_putchar(((c >> 6) & 0x3F) + 0x80);
-			ft_putchar((c & 0x3F) + 0x80);
-			return (4);
-		}
-	return (0);
+		str[++(*i)] = (char) ((c >> 12) + 0xE0);
+		str[++(*i)] = (char) (((c >> 6) & 0x3F) + 0x80);
+		str[++(*i)] = (char) ((c & 0x3F) + 0x80);
+	}
+	else if (c <= 0x10FFFF)
+	{
+		str[++(*i)] = (char) ((c >> 18) + 0xF0);
+		str[++(*i)] = (char) (((c >> 12) & 0x3F) + 0x80);
+		str[++(*i)] = (char) (((c >> 6) & 0x3F) + 0x80);
+		str[++(*i)] = (char) ((c & 0x3F) + 0x80);
+	}
 }
 
-int		ft_strlen_wchar(wchar_t *str)
+int ft_strlen_wchar(wchar_t *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
 		i++;
 	return (i);
 }
-			
+
+int ft_len_wchar(wchar_t *str)
+{
+	int i;
+	int len;
+
+	i = 0;
+	len = 0;
+	while (str[i])
+	{
+		if (str[i] <= 0x7F)
+			len += 1;
+		else if (str[i] <= 0x7FF)
+			len += 2;
+		else if (str[i] <= 0xFFFF)
+			len += 3;
+		else if (str[i] <= 0x10FFFF)
+			len += 4;
+		i++;
+	}
+	return (len);
+}

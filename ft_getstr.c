@@ -12,51 +12,47 @@
 
 #include "ft_printf.h"
 
-char	*ft_get_double(va_list *ap, t_struct *lst)
+char *ft_getdouble(va_list *ap, t_srt *lst)
 {
-	if (lst->letar == 'f')
+	if (lst->letar == 'F' || lst->letar == 'f')
 		return (ft_cast_f(ap, lst));
-	else if (lst->letar == 'F')
-		return (ft_cast_F(ap, lst));
 	else if (lst->letar == 'e')
 		return (ft_cast_e(ap, lst));
 	else if (lst->letar == 'E')
-		return (ft_cast_E(ap, lst));
+		return (ft_cast_el(ap, lst));
 	else if (lst->letar == 'g')
-		return (ft_cast_g(ap, lst));
+		return (ft_str_g(ap, lst));
 	else if (lst->letar == 'G')
-		return (ft_cast_G(ap, lst));
-	else if (lst->letar == 'A')
-		return (ft_cast_A(ap, lst));
+		return (ft_cast_gi(ap, lst));
+	/*else if (lst->letar == 'A')
+		return (ft_cast_al(ap, lst));
 	else if (lst->letar == 'a')
-		return (ft_cast_a(ap, lst));
+		return (ft_cast_a(ap, lst));*/
 	else
-		return (NULL);
+		return (getstr(ap, lst));
 }
 
-char	*get_str(va_list *ap, t_struct *lst)
+char *get_str(va_list *ap, t_srt *lst)
 {
-	if (lst->letar == 's')
-		return (ft_cast_str(ap, lst));
-	else if (lst->letar == 'S')
-		return (ft_wchar_str(ap, lst));
-	else if (lst->letar == 'c' || lst->letar == 'C')
-		return (ft_cast_char(ap, lst));
+	if (lst->letar == 'S' || (lst->letar == 's' && lst->size == 3))
+		return (ft_print_wchar_str(ap, lst));
+	else if (lst->letar == 's')
+		return (ft_cest_str(ap, lst));
 	else
-		return (ft_get_double(ap, lst));
+		return (ft_getdouble(ap, lst));
 }
 
-char	*ft_format_print(va_list *ap, t_strucr *lst)
+char *getstr(va_list *ap, t_srt *lst)
 {
 
 	if (lst->letar == 'p')
-		return (ft_cast_p(ap, lst));
+		return (ft_strcast_p(ap, lst));
 	else if (lst->letar == 'd' || lst->letar == 'i')
 		return (ft_cast_di(ap, lst));
 	else if (lst->letar == 'o')
 		return (ft_cast_unsigned(ap, lst, 8));
 	else if (lst->letar == 'D')
-		return (ft_cast_D(ap, lst));
+		return (ft_cast_dl(ap, lst));
 	else if (lst->letar == 'O')
 		return (ft_cast_long(ap, lst, 8));
 	else if (lst->letar == 'u')
@@ -68,7 +64,7 @@ char	*ft_format_print(va_list *ap, t_strucr *lst)
 	else if (lst->letar == 'b')
 		return (ft_cast_unsigned(ap, lst, 2));
 	else if (lst->letar == 'X')
-		return (ft_cast_X(ap, lst));
+		return (ft_cast_xl(ap, lst));
 	else
-		return (ft_get_str(ap, lst));
+		return (NULL);
 }

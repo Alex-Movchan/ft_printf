@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-long double		rang_e(long double nb, int *i)
+long double rang_e(long double nb, int *i)
 {
 	if (nb == 0.0)
 		return (nb);
@@ -35,28 +35,28 @@ long double		rang_e(long double nb, int *i)
 	return (nb);
 }
 
-char	*ft_str_ost(char *s int i)
+char *ft_str_ost(char *s, int i)
 {
 	if (i < 0)
 	{
-		s[1] ='-';
-        return (ft_itoa(-i));
-    }
-    else
-    {
-        s[1] = '+';
-        return (ft_itoa(i));
-    }
+		s[1] = '-';
+		return (ft_itoa(-i));
+	}
+	else
+	{
+		s[1] = '+';
+		return (ft_itoa(i));
+	}
 }
 
-char	*ft_getpow(int i)
+char *ft_getpow(int i)
 {
-	char	*s1;
-	char	*s2;
+	char *s1;
+	char *s2;
 
-	s1 = ft_strnew(5);
+	s1 = ft_strnew(4);
 	s1[0] = 'e';
-	s2 = ft_str_ost(s1, i)
+	s2 = ft_str_ost(s1, i);
 	if (i >= -9 && i <= 9)
 	{
 		s1[2] = '0';
@@ -68,16 +68,16 @@ char	*ft_getpow(int i)
 		s1[3] = s2[1];
 	}
 	s1[4] = '\0';
-	ft_strdel(&s2)
-	return (s);
+	ft_strdel(&s2);
+	return (s1);
 }
 
-char	*get_str_e(long double nb, t_struct *lst)
+char *ft_get_str_e(long double nb, t_srt *lst)
 {
-	char	*s;
-	char	*s1;
-	int		i;
-	int		len;
+	char *s;
+	char *s1;
+	int i;
+	int len;
 
 	i = 0;
 	nb = rang_e(nb, &i);

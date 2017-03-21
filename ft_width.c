@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-char	*ft_strcpy_rev(char *s1, char *s2, char c, int j)
+char *ft_strcpy_rev(char *s1, char *s2, char c, int j)
 {
-	int	i;
+	int i;
 
-	i = ft_strlen(s2);
+	i = (int) ft_strlen(s2);
 	while (i >= 0)
 	{
 		s1[j] = s2[i];
@@ -25,21 +25,23 @@ char	*ft_strcpy_rev(char *s1, char *s2, char c, int j)
 	}
 	while (j >= 0)
 	{
-	s1[j] = c;
-	j--;
+		s1[j] = c;
+		j--;
 	}
-	ft_strdel(&s2);
+	if (s2[0] == '\0')
+		return(s1);
+	//ft_strdel(&s2);
 	return (s1);
 }
 
-char	*ft_strcpychar(char *s1, char *s2, int j)
+char *ft_strcpychar(char *s1, char *s2, int j)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (s2[i])
 	{
-		s1[i] =s2[i];
+		s1[i] = s2[i];
 		i++;
 	}
 	while (i < j)
@@ -47,26 +49,32 @@ char	*ft_strcpychar(char *s1, char *s2, int j)
 		s1[i] = ' ';
 		i++;
 	}
-	ft_strdel(&s2);
+	s1[i] = '\0';
+	//ft_strdel(&s2);
 	return (s1);
 }
 
-char	*ft_width(char *str, t_struct *lst)
+char *ft_width(char *str, t_srt *lst)
 {
-	char	*src;
+	char *src;
 
-	if (lst->width != 0)
+	if (lst->width != -1)
 	{
-		if ((int)ft_strlen(str) < lst->width)
+		if (lst->width < -1)
 		{
-			if ((src = ft_strnew((size_t)lst->width)) == NULL)
+			lst->width *= -1;
+			lst->zero_or_minus = '-';
+		}
+		if ((int) ft_strlen(str) < lst->width)
+		{
+			if ((src = ft_strnew((size_t) lst->width)) == NULL)
 				return (NULL);
 			if (lst->zero_or_minus == '1')
 				return (ft_strcpy_rev(src, str, '0', lst->width));
+			else if (lst->space == ' ')
+				return (ft_strcpy_rev(src, str, ' ', lst->width));
 			else if (lst->zero_or_minus == '-')
 				return (ft_strcpychar(src, str, lst->width));
-			else if (lst->plus != '0')
-                ft_strcpy_rev(src, str, lst->plus, lst->width));
 			return (ft_strcpy_rev(src, str, ' ', lst->width));
 		}
 		else
@@ -75,18 +83,47 @@ char	*ft_width(char *str, t_struct *lst)
 	return (str);
 }
 
-char	*ft_plus(char *str, t_struct *lst)
+char 	*ft_plus2(char *str, t_srt *lst)
 {
-	char	*src;
-	int		i;
+	int i;
 
 	i = 0;
-	if (lst->plus_or_space == '+' || lst->plus_or_space == '-')
+	str = ft_width(str, lst);
+	if (lst->plus != '0')
 	{
-	    src = ft_strcpy_rev(src, str, lst->plus_or_space, ((int)ft_strlen(str) + 1));
-	    ft_strdel(&str);
+		 if ((lst->width == -1 && lst->zero_or_minus == '1') || (int)ft_strlen(str) > lst->width)
+			 return (ft_plus(str, lst));
+
+		while (ft_isdigit(str[i]) != 1)
+			i++;
+		str[i] = lst->plus;
+	}
+	return (str);
+}
+
+char    *ft_plus(char *str, t_srt *lst)
+{
+	char    *src;
+	int     i;
+	int     j;
+
+	i = -1;
+	if (lst->plus != '0')
+	{
+		src = ft_strnew(ft_strlen(str) + 1);
+		j = -1;
+		while (ft_isdigit(str[++i]) == 0)
+			src[++j] = str[i];
+		if (j >= 0)
+			src[j] = lst->plus;
+		else
+			src[++j] = lst->plus;
+		while (str[i])
+			src[++j] = str[i++];
+		src[++j] = '\0';
+		src = ft_width(src, lst);
+		ft_strdel(&str);
 		return (src);
 	}
-	else
-		return (str);
+	return (str);
 }
