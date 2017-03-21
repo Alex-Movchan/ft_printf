@@ -21,8 +21,8 @@ char *ft_getstr_f(long double nb, t_srt *lst)
 	int i;
 
 	str = (itoa((intmax_t) nb));
-	if ((int)ft_strlen(str) == lst->accur || (int)ft_strlen(str) + 1 == lst->accur)
-		return (str);
+	//if ((int)ft_strlen(str) == lst->accur || (int)ft_strlen(str) + 1 == lst->accur)
+	//	return (str);
 	if (lst->accur != -1)
 		i = lst->accur - (int) ft_strlen(str);
 	else
@@ -76,10 +76,11 @@ char *ft_str_g(va_list *ap, t_srt *lst)
 	}
 	nbr = nb;
 	str = (itoa((intmax_t) nbr));
+	i = 0;
 	nbr = rang_e(nbr, &i);
 	if ((ft_strlen(str) == 6 && lst->accur == -1) || ft_strlen(str) == lst->accur)
 		return (str);
-	if ((lst->accur != -1 && (i <= lst->accur || -i <= lst->accur)) || ft_strlen(str) > 6)
+	if ((lst->accur != -1 && i != 0 && (i <= lst->accur || -i <= lst->accur)) || ft_strlen(str) > 6)
 		return (ft_get_str_eg(nb, lst));
 	else
 		str = ft_getstr_f(nb, lst);
