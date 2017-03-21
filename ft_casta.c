@@ -34,9 +34,9 @@ char *ft_str_dable_a(long double nb, int len)
 		i++;
 	}
 	s[i] = '\0';
-	if (nb == 0 && len > i)
+	//if (nb == 0 && len > i)
 		return (s);
-	return (ft_okrug_a(s));
+	//return (ft_okrug_a(s));
 }
 
 char *ft_str_zero(long double nb, t_srt *lst, char *s)
