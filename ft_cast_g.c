@@ -67,6 +67,11 @@ char *ft_str_g(va_list *ap, t_srt *lst)
 		nb = (va_arg(*ap, long double));
 	else
 		nb = (long double) va_arg(*ap, double);
+    if (nb < 0)
+    {
+        nb = -nb;
+        lst->plus = '-';
+    }
 	nbr = nb;
 	str = (itoa((intmax_t) nbr));
 	nbr = rang_e(nbr, &i);
