@@ -87,6 +87,8 @@ char *ft_str_g(va_list *ap, t_srt *lst)
 	i = (int)ft_strlen(str) - 1;
 	while (str[i] == '0')
 		i--;
+	if (str[i] == '.')
+		i--;
 	str[++i] = '\0';
 	return (str);
 }
