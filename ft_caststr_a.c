@@ -96,7 +96,7 @@ char *ft_getstr_a(long double nb, t_srt *lst)
 	char *s1;
 
 	if (nb == 0.0)
-		return ("0x0p+0");
+		return (ft_strdup("0x0p+0"));
 	i = 0;
 	nb = rang(nb, &i);
 	s1 = ft_pow_a(i);

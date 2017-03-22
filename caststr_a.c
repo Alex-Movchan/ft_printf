@@ -84,7 +84,7 @@ char *ft_getstr_a2(long double nb, t_srt *lst)
 	char *s1;
 
 	if (nb == 0.0)
-		return ("0X0P+0");
+		return (ft_strdup("0X0P+0"));
 	i = 0;
 	nb = rang(nb, &i);
 	s1 = ft_pow_a2(i);
