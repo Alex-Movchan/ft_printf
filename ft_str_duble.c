@@ -32,7 +32,6 @@ char *ft_pow(long double nb, int len)
 	src = ft_itoa((int) nb);
 	if (i > -1)
 		src = ft_strjoin(str, src);
-	ft_strdel(&str);
 	return (src);
 }
 

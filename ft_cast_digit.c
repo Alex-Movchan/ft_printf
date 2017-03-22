@@ -62,7 +62,7 @@ char    *ft_cast_unsigned(va_list ap, t_srt *lst, int base)
 		str = ft_strhesh(str, lst);
 	else
 		str = ft_width(str, lst);
-	if (lst->accur > lst->width && lst->space == ' ')
+	if (lst->accur > lst->width + 1 && lst->space == ' ')
 		str = ft_space(str, ' ', ((int)ft_strlen(str) + 1), lst);
 	return (str);
 }
@@ -101,7 +101,7 @@ char *ft_cast_long(va_list ap, t_srt *lst, int base)
 	str = ft_accur_digits(str, lst);
 	if ( nb != 0 || (str[0] == '\0' && lst->letar == 'O'))
 		str = ft_strhesh(str, lst);
-	if (lst->accur > lst->width && lst->space == ' ')
+	if (lst->accur > lst->width + 1 && lst->space == ' ')
 		str = ft_space(str, ' ', ((int) ft_strlen(str) + 1), lst);
 	else
 		str = ft_width(str, lst);

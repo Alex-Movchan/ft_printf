@@ -83,6 +83,5 @@ char *ft_get_str_e(long double nb, t_srt *lst)
 	s = ft_str_double(nb, lst);
 	s1 = ft_getpow(i);
 	s = ft_strjoin(s, s1);
-	ft_strdel(&s1);
 	return (s);
 }

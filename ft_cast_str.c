@@ -6,7 +6,7 @@ char *ft_cest_str(va_list ap, t_srt *lst)
 
 	str = va_arg(ap, char *);
 	if (str == NULL)
-		str = "(null)";
+		str = ft_strdup("(null)");
 	else
 		str = ft_strdup(str);
 	str = ft_accur(str, lst);
@@ -42,6 +42,7 @@ int		ft_cast_chr(t_srt *lst, char *str)
 int 	ft_cast_char(va_list ap, t_srt *lst)
 {
 	char *str;
+	int i;
 
 	str = ft_strnew(1);
 	str[0]  = va_arg(ap, int);
@@ -50,5 +51,7 @@ int 	ft_cast_char(va_list ap, t_srt *lst)
 		return(ft_cast_chr(lst, str));
 	str = ft_width(str, lst);
 	ft_putstr_fd(str, lst->fd);
-	return ((int)ft_strlen(str));
+	i = (int)ft_strlen(str);
+	ft_strdel(&str);
+	return (i);
 }

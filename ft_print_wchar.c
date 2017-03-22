@@ -39,8 +39,6 @@ char *ft_print_wchar_str(va_list ap, t_srt *lst)
 		src[++j] = '\0';
 	src = ft_accur(src, lst);
 	src = ft_width(src, lst);
-	//src = ft_accur(src, lst);
-	//free(str);
 	return (src);
 }
 

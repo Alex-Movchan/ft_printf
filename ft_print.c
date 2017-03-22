@@ -25,6 +25,7 @@ char *ft_getchar(t_srt *lst)
 int ft_print(t_srt *lst, va_list ap, va_list tmp)
 {
 	char *str;
+	int i;
 
 
 	if (lst->dolar != 0)
@@ -32,7 +33,9 @@ int ft_print(t_srt *lst, va_list ap, va_list tmp)
 	else if ((str = get_str(ap, lst)) != NULL || (str = ft_getchar(lst)) != NULL)
 	{
 		ft_putstr_fd(str, lst->fd);
-		return ((int) ft_strlen(str));
+		i = (int)ft_strlen(str);
+		ft_strdel(&str);
+		return (i);
 	}
 	else if (lst->letar == 'c' || lst->letar == 'C')
 		return (ft_cast_char(ap, lst));

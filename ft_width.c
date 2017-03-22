@@ -30,7 +30,7 @@ char *ft_strcpy_rev(char *s1, char *s2, char c, int j)
 	}
 	if (s2[0] == '\0')
 		return(s1);
-	//ft_strdel(&s2);
+	ft_strdel(&s2);
 	return (s1);
 }
 
@@ -50,7 +50,7 @@ char *ft_strcpychar(char *s1, char *s2, int j, char c)
 		i++;
 	}
 	s1[i] = '\0';
-	//ft_strdel(&s2);
+	ft_strdel(&s2);
 	return (s1);
 }
 

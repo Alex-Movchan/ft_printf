@@ -19,7 +19,7 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 	if (lst->accur != -1)
 	{
 		if (lst->accur == 0 && str[0] == '0')
-			return ("\0");
+			return (ft_strdup("\0"));
 		if ((int)ft_strlen(str) <= lst->accur)
 		{
 			if ((src = ft_strnew((size_t)lst->accur)) == NULL)

@@ -109,7 +109,7 @@ int		ft_format(const char *format, va_list ap)
 		}
 		else
 			res += ft_printformat(format, &i, list, ap);
-
 	}
+	free(list);
 	return (res);
 }

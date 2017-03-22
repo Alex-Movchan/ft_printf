@@ -86,7 +86,6 @@ char *ft_pow_a(int pow)
 		s2 = ft_itoa(pow);
 	}
 	s1 = ft_strjoin(s1, s2);
-	ft_strdel(&s2);
 	return (s1);
 }
 
@@ -113,6 +112,5 @@ char *ft_getstr_a(long double nb, t_srt *lst)
 		s = ft_str_dable_a(nb, 14, lst);
 		s = ft_strjoin(s, s1);
 	}
-	ft_strdel(&s1);
 	return (s);
 }
