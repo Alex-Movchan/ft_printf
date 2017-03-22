@@ -6,13 +6,13 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 16:31:12 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/01 22:17:54 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:31:31 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int tayp(char c)
+int		tayp(char c)
 {
 	if (c == 's' || c == 'S' || c == 'p' || c == 'd')
 		return (1);
@@ -27,7 +27,7 @@ int tayp(char c)
 	return (0);
 }
 
-int flag_format(char c, t_srt *lst)
+int		flag_format(char c, t_srt *lst)
 {
 	if (c == '-')
 	{
@@ -54,9 +54,9 @@ int flag_format(char c, t_srt *lst)
 		return (0);
 }
 
-int add_dot(const char *str, int *i, t_srt *lst, va_list ap)
+int		add_dot(const char *str, int *i, t_srt *lst, va_list ap)
 {
-	int len;
+	int	len;
 
 	if (str[(*i)] == '.')
 	{

@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 19:17:30 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/17 19:23:48 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 22:23:42 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,23 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 			}
 			return (ft_strcpy_rev(src, str, '0', lst->accur));
 		}
-
 	}
 	return (str);
 }
 
-char 	*ft_hesh(t_srt *lst, char *str)
+char	*ft_hesh(t_srt *lst, char *str)
 {
 	str = ft_width(str, lst);
 	str[0] = '0';
 	str[1] = 'x';
 	return (str);
 }
+
 char	*ft_strhesh(char *str, t_srt *lst)
 {
 	char	*src;
 	int		i;
 	int		j;
-
 
 	j = -1;
 	i = 0;
@@ -80,6 +79,6 @@ char	*ft_space(char *str, char c, int len, t_srt *lst)
 	src = ft_strnew((size_t)len);
 	src = ft_strcpy_rev(src, str, c, len);
 	if (lst->hesh == 1 && (lst->letar == 'o' || lst->letar == 'O'))
-	return (ft_width(src, lst));
+		return (ft_width(src, lst));
 	return (src);
 }

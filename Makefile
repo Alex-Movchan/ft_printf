@@ -31,8 +31,6 @@ SRC =	ft_cast_size.c \
 		ft_str_duble.c \
 		ft_strcasr_p.c \
 		ft_struct_format.c \
-		ft_wchar_width.c \
-		ft_wcharaccur.c \
 		ft_width.c \
 		itoa.c \
 		pars.c \

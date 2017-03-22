@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 16:09:05 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/17 19:15:23 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:32:58 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_srt	*ft_print_format(t_srt *lst, const char *str, int *i, va_list ap)
 	while (str[++(*i)] && lst->letar == '0')
 	{
 		ft_formate(str, i, lst);
-			if (str[(*i)] == '*' && (lst->width = -1))
+		if (str[(*i)] == '*' && (lst->width = -1))
 			lst->width = va_arg(ap, int);
 		else if (add_dot(str, i, lst, ap) == 1)
 			;

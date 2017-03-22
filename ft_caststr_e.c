@@ -6,13 +6,13 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 14:40:33 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/01 21:43:59 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:21:40 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long double rang_e(long double nb, int *i)
+long double	rang_e(long double nb, int *i)
 {
 	if (nb == 0.0)
 		return (nb);
@@ -35,7 +35,7 @@ long double rang_e(long double nb, int *i)
 	return (nb);
 }
 
-char *ft_str_ost(char *s, int i)
+char		*ft_str_ost(char *s, int i)
 {
 	if (i < 0)
 	{
@@ -49,10 +49,10 @@ char *ft_str_ost(char *s, int i)
 	}
 }
 
-char *ft_getpow(int i)
+char		*ft_getpow(int i)
 {
-	char *s1;
-	char *s2;
+	char	*s1;
+	char	*s2;
 
 	s1 = ft_strnew(4);
 	s1[0] = 'e';
@@ -72,11 +72,11 @@ char *ft_getpow(int i)
 	return (s1);
 }
 
-char *ft_get_str_e(long double nb, t_srt *lst)
+char		*ft_get_str_e(long double nb, t_srt *lst)
 {
-	char *s;
-	char *s1;
-	int i;
+	char	*s;
+	char	*s1;
+	int		i;
 
 	i = 0;
 	nb = rang_e(nb, &i);

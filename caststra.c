@@ -1,25 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   caststra.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/22 21:37:09 by amovchan          #+#    #+#             */
+/*   Updated: 2017/03/22 21:50:59 by amovchan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char *ft_str_dable_a2(long double nb, int len, t_srt *lst)
+char	*ft_str_dable_a2(long double nb, int len, t_srt *lst, int i)
 {
-	int i;
-	int a;
-	char *s;
-	char *src;
+	int		a;
+	char	*s;
+	char	*src;
 
-	i = 0;
 	len += 4;
 	s = ft_strnew(len);
 	s = ft_strs2(s, &i, 1);
 	nb -= 1.0;
-    if (nb != 0)
-        s[i++] = '.';
-
+	if (nb != 0)
+		s[i++] = '.';
 	while (i < len && nb != 0)
 	{
 		nb *= 16;
-		a = (int) nb;
-		nb = nb - (double) a;
+		a = (int)nb;
+		nb = nb - (double)a;
 		s[i] = ft_char2(a);
 		i++;
 	}
@@ -29,22 +38,19 @@ char *ft_str_dable_a2(long double nb, int len, t_srt *lst)
 		src = ft_strnew((size_t)lst->accur + 4);
 		s = ft_strcpychar(src, s, lst->accur + 4, '0');
 	}
-
-	if (nb == 0 && len > i)
-		return (s);
-	return (ft_okrug_a2(s));
+	return ((nb == 0 && len > i) ? s : ft_okrug_a2(s));
 }
 
-char *ft_str_zero2(long double nb, t_srt *lst, char *s)
+char	*ft_str_zero2(long double nb, t_srt *lst, char *s)
 {
-	char *str;
-	char *src;
-	int i;
+	char	*str;
+	char	*src;
+	int		i;
 
 	i = 0;
 	nb = ft_r_nbr(nb);
 	str = ft_strnew(4);
-	str = ft_strs2(str, &i, (int) nb);
+	str = ft_strs2(str, &i, (int)nb);
 	if (lst->hesh == 1)
 	{
 		src = ft_strnew((ft_strlen(str) + 1));
@@ -64,7 +70,7 @@ char *ft_str_zero2(long double nb, t_srt *lst, char *s)
 	return (str);
 }
 
-void ft_ppp2(char *c, char *b)
+void	ft_ppp2(char *c, char *b)
 {
 	if ((*c) >= '0' && (*c) < '9')
 		(*c) += 1;
@@ -82,12 +88,12 @@ void ft_ppp2(char *c, char *b)
 	}
 }
 
-char *ft_okrug_a2(char *str)
+char	*ft_okrug_a2(char *str)
 {
-	int i;
-	char c;
-	char a;
-	char b;
+	int		i;
+	char	c;
+	char	a;
+	char	b;
 
 	i = ft_strlen(str);
 	a = str[--i];

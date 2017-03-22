@@ -6,17 +6,17 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 15:10:37 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/01 18:00:49 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:29:28 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long double rang(long double nb, int *i)
+long double	rang(long double nb, int *i)
 {
 	if (nb < 1)
 	{
-		while ((int) nb != 1)
+		while ((int)nb != 1)
 		{
 			nb *= 2;
 			(*i)--;
@@ -24,7 +24,7 @@ long double rang(long double nb, int *i)
 	}
 	else if (nb > 1)
 	{
-		while ((int) nb != 1)
+		while ((int)nb != 1)
 		{
 			nb /= 2;
 			(*i)++;
@@ -33,9 +33,9 @@ long double rang(long double nb, int *i)
 	return (nb);
 }
 
-char ft_char(int a)
+char		ft_char(int a)
 {
-	char c;
+	char	c;
 
 	c = '0';
 	if (a >= 0 && a <= 9)
@@ -55,9 +55,9 @@ char ft_char(int a)
 	return (c);
 }
 
-char *ft_strs(char *s, int *i, int nb)
+char		*ft_strs(char *s, int *i, int nb)
 {
-	char *s1;
+	char	*s1;
 
 	s1 = ft_itoa(nb);
 	s[(*i)++] = '0';
@@ -68,10 +68,10 @@ char *ft_strs(char *s, int *i, int nb)
 	return (s);
 }
 
-char *ft_pow_a(int pow)
+char		*ft_pow_a(int pow)
 {
-	char *s1;
-	char *s2;
+	char	*s1;
+	char	*s2;
 
 	s1 = ft_strnew(1);
 	s1[0] = 'p';
@@ -91,11 +91,11 @@ char *ft_pow_a(int pow)
 	return (s1);
 }
 
-char *ft_getstr_a(long double nb, t_srt *lst)
+char		*ft_getstr_a(long double nb, t_srt *lst)
 {
-	int i;
-	char *s;
-	char *s1;
+	int		i;
+	char	*s;
+	char	*s1;
 
 	if (nb == 0.0)
 		return (ft_strdup("0x0p+0"));

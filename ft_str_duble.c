@@ -6,20 +6,20 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 14:22:48 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/01 21:28:14 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:35:47 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_pow(long double nb, int len)
+char	*ft_pow(long double nb, int len)
 {
-	int i;
-	char *str;
-	char *src;
+	int		i;
+	char	*str;
+	char	*src;
 
 	i = -1;
-	str = ft_strnew((size_t) len);
+	str = ft_strnew((size_t)len);
 	while (len > 0)
 	{
 		if (nb < 1)
@@ -29,23 +29,23 @@ char *ft_pow(long double nb, int len)
 	}
 	str[i] = '\0';
 	nb = ft_r_nbr(nb);
-	src = ft_itoa((int) nb);
+	src = ft_itoa((int)nb);
 	if (i > -1)
 		src = ft_strjoin(str, src);
 	return (src);
 }
 
-char *ft_cast(char *s1, char *s2)
+char	*ft_cast(char *s1, char *s2)
 {
-	char *s;
-	int i;
-	int j;
-	int len;
+	char	*s;
+	int		i;
+	int		j;
+	int		len;
 
 	i = 0;
 	j = 0;
-	len = (int) ft_strlen(s1) + (int) ft_strlen(s2) + 1;
-	s = (char *) malloc(sizeof(char) * len);
+	len = (int)ft_strlen(s1) + (int)ft_strlen(s2) + 1;
+	s = (char *)malloc(sizeof(char) * len);
 	while (s1[i])
 	{
 		s[i] = s1[i];
@@ -62,16 +62,15 @@ char *ft_cast(char *s1, char *s2)
 	return (s);
 }
 
-
-char *ft_okrug(long double nb, t_srt *lst)
+char	*ft_okrug(long double nb, t_srt *lst)
 {
-	char *str;
-	char *src;
-	int i;
+	char	*str;
+	char	*src;
+	int		i;
 
 	i = 0;
 	nb = ft_r_nbr(nb);
-	str = ft_itoa((int) nb);
+	str = ft_itoa((int)nb);
 	str = ft_apostroph(str, lst);
 	if (lst->hesh == 1)
 	{
@@ -89,16 +88,16 @@ char *ft_okrug(long double nb, t_srt *lst)
 	return (str);
 }
 
-char *ft_str_double(long double nb, t_srt *lst)
+char	*ft_str_double(long double nb, t_srt *lst)
 {
-	char *s1;
-	char *s2;
-	long double a;
-	int len;
+	char		*s1;
+	char		*s2;
+	long double	a;
+	int			len;
 
 	if (lst->accur == 0)
 		return (ft_okrug(nb, lst));
-	a = (long long int) nb;
+	a = (long long int)nb;
 	nb -= a;
 	len = 6;
 	if (lst->accur > 0)
@@ -108,7 +107,7 @@ char *ft_str_double(long double nb, t_srt *lst)
 	if (nb < 0)
 		s2 = ft_pow(-nb, len);
 	else
-	s2 = ft_pow(nb, len);
+		s2 = ft_pow(nb, len);
 	s1 = itoa((long long int)a);
 	s1 = ft_apostroph(s1, lst);
 	s1 = ft_cast(s1, s2);

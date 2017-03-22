@@ -6,13 +6,13 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/24 18:47:06 by amovchan          #+#    #+#             */
-/*   Updated: 2017/02/24 20:39:24 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:19:53 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void ft_specifiers(const char *str, int *i, t_srt *list)
+void	ft_specifiers(const char *str, int *i, t_srt *list)
 {
 	if (str[(*i)] == 'z' && list->size < 6)
 		list->size = 6;

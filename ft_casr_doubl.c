@@ -6,16 +6,16 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 21:13:39 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/01 21:49:20 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:19:06 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_cast_f(va_list ap, t_srt *lst)
+char	*ft_cast_f(va_list ap, t_srt *lst)
 {
-	long double nb;
-	char *str;
+	long double	nb;
+	char		*str;
 
 	if (lst->size == 7 || lst->letar == 'F')
 		nb = va_arg(ap, long double);
@@ -33,10 +33,10 @@ char *ft_cast_f(va_list ap, t_srt *lst)
 	return (str);
 }
 
-char *ft_cast_e(va_list ap, t_srt *lst)
+char	*ft_cast_e(va_list ap, t_srt *lst)
 {
-	double nb;
-	char *str;
+	double	nb;
+	char	*str;
 
 	if (lst->size == 7)
 		nb = va_arg(ap, long double);
@@ -54,16 +54,16 @@ char *ft_cast_e(va_list ap, t_srt *lst)
 	return (str);
 }
 
-char *ft_cast_el(va_list ap, t_srt *lst)
+char	*ft_cast_el(va_list ap, t_srt *lst)
 {
-	char *str;
-	int i;
+	char	*str;
+	int		i;
 
 	i = 0;
 	str = ft_cast_e(ap, lst);
 	while (str[i])
 	{
-		str[i] = (char) ft_toupper(str[i]);
+		str[i] = (char)ft_toupper(str[i]);
 		i++;
 	}
 	return (str);

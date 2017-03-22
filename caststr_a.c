@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   caststr_a.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/22 21:26:56 by amovchan          #+#    #+#             */
+/*   Updated: 2017/03/22 21:51:37 by amovchan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-long double rang2(long double nb, int *i)
+long double		rang2(long double nb, int *i)
 {
 	if (nb < 1)
 	{
-		while ((int) nb != 1)
+		while ((int)nb != 1)
 		{
 			nb *= 2;
 			(*i)--;
@@ -12,7 +24,7 @@ long double rang2(long double nb, int *i)
 	}
 	else if (nb > 1)
 	{
-		while ((int) nb != 1)
+		while ((int)nb != 1)
 		{
 			nb /= 2;
 			(*i)++;
@@ -21,9 +33,9 @@ long double rang2(long double nb, int *i)
 	return (nb);
 }
 
-char ft_char2(int a)
+char			ft_char2(int a)
 {
-	char c;
+	char	c;
 
 	c = '0';
 	if (a >= 0 && a <= 9)
@@ -43,9 +55,9 @@ char ft_char2(int a)
 	return (c);
 }
 
-char *ft_strs2(char *s, int *i, int nb)
+char			*ft_strs2(char *s, int *i, int nb)
 {
-	char *s1;
+	char	*s1;
 
 	s1 = ft_itoa(nb);
 	s[(*i)++] = '0';
@@ -56,10 +68,10 @@ char *ft_strs2(char *s, int *i, int nb)
 	return (s);
 }
 
-char *ft_pow_a2(int pow)
+char			*ft_pow_a2(int pow)
 {
-	char *s1;
-	char *s2;
+	char	*s1;
+	char	*s2;
 
 	s1 = ft_strnew(2);
 	s1[0] = 'P';
@@ -79,11 +91,11 @@ char *ft_pow_a2(int pow)
 	return (s1);
 }
 
-char *ft_getstr_a2(long double nb, t_srt *lst)
+char			*ft_getstr_a2(long double nb, t_srt *lst)
 {
-	int i;
-	char *s;
-	char *s1;
+	int		i;
+	char	*s;
+	char	*s1;
 
 	if (nb == 0.0)
 		return (ft_strdup("0X0P+0"));
@@ -94,12 +106,12 @@ char *ft_getstr_a2(long double nb, t_srt *lst)
 		return (ft_str_zero2(nb, lst, s1));
 	if (lst->accur > 0)
 	{
-		s = ft_str_dable_a2(nb, lst->accur + 1, lst);
+		s = ft_str_dable_a2(nb, lst->accur + 1, lst, 0);
 		s = ft_strjoin(s, s1);
 	}
 	else
 	{
-		s = ft_str_dable_a2(nb, 14, lst);
+		s = ft_str_dable_a2(nb, 14, lst, 0);
 		s = ft_strjoin(s, s1);
 	}
 	return (s);

@@ -6,15 +6,15 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 17:03:46 by amovchan          #+#    #+#             */
-/*   Updated: 2017/02/25 17:08:56 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 21:26:42 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_lenint(long long int n)
+static int		ft_lenint(long long int n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n <= 0)
@@ -26,6 +26,7 @@ static int ft_lenint(long long int n)
 	}
 	return (len);
 }
+
 long long int	isnegativ(long long int n)
 {
 	if (n < 0)
@@ -33,12 +34,11 @@ long long int	isnegativ(long long int n)
 	return (n);
 }
 
-
-char *itoa(long long int n)
+char			*itoa(long long int n)
 {
-	int len;
-	long long int nbr;
-	char *str;
+	int				len;
+	long long int	nbr;
+	char			*str;
 
 	nbr = isnegativ(n);
 	len = ft_lenint(n);
