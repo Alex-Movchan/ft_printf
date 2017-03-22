@@ -106,5 +106,5 @@ char				*ft_pow_a2(int pow);
 char 				ft_char2(int a);
 char 				*ft_str_zero2(long double nb, t_srt *lst, char *s);
 char 				*ft_okrug_a2(char *str);
-
+char				*ft_castnegativ(intmax_t nbr, t_srt *lst);
 #endif

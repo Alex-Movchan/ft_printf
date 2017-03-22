@@ -6,7 +6,7 @@
 #    By: amovchan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/17 20:47:06 by amovchan          #+#    #+#              #
-#    Updated: 2017/03/21 19:49:59 by amovchan         ###   ########.fr        #
+#    Updated: 2017/03/22 23:02:16 by amovchan         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -45,7 +45,9 @@ SRC =	ft_cast_size.c \
 		ft_cast_digit.c \
 		ft_cast_g.c \
 		caststr_a.c \
-		caststra.c
+		caststra.c \
+		ft_cast_dig2.c
+
 HDR = ft_printf.h
 
 OBJ = $(SRC:.c=.o)
