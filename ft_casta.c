@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 15:54:45 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/22 23:09:04 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 23:13:11 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ char	*ft_str_dable_a(long double nb, int len, t_srt *lst)
 
 	i = 0;
 	len += 4;
-	s = ft_strnew(len);
-	s = ft_strs(s, &i, 1);
+//	s = ft_strnew(len);
+	s = ft_strs(ft_strnew(len), &i, 1);
 	nb -= 1.0;
-//	if (nb != 0)
-//		s[i++] = '.';
 	nb != 0 ? s[i++] = '.' : 0;
 	while (i < len && nb != 0)
 	{
