@@ -6,11 +6,11 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 22:56:05 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/22 23:01:31 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 23:10:45 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf"
+#include "ft_printf.h"
 
 char	*ft_castnegativ(intmax_t nbr, t_srt *lst)
 {
