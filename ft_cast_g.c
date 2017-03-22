@@ -54,7 +54,6 @@ char *ft_get_str_eg(long double nb, t_srt *lst)
 	}
 	str = ft_strjoin(str, src);
 	str = ft_plus(str, lst);
-	ft_strdel(&src);
 	return (str);
 }
 
