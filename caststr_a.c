@@ -61,16 +61,18 @@ char *ft_pow_a2(int pow)
 	char *s1;
 	char *s2;
 
-	s1 = ft_strnew(1);
+	s1 = ft_strnew(2);
 	s1[0] = 'P';
 	if (pow < 0)
 	{
 		s1[1] = '-';
+		s1[2] = '\0';
 		s2 = ft_itoa(-pow);
 	}
 	else
 	{
 		s1[1] = '+';
+		s1[2] = '\0';
 		s2 = ft_itoa(pow);
 	}
 	s1 = ft_strjoin(s1, s2);
