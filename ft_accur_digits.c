@@ -18,6 +18,8 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 
 	if (lst->accur != -1)
 	{
+		if ((lst->letar == 'O' || lst->letar == 'o') && lst->hesh != 0)
+			lst->accur -= 1;
 		if (lst->accur == 0 && str[0] == '0')
 			return (ft_strdup("\0"));
 		if ((int)ft_strlen(str) <= lst->accur)
@@ -52,7 +54,7 @@ char	*ft_strhesh(char *str, t_srt *lst)
 
 	j = -1;
 	i = 0;
-	if ((lst->hesh == 1) && (lst->letar == 'x' || lst->letar == 'p' || lst->letar == 'X'))
+	if ((lst->hesh == 1) && (lst->letar == 'x' || lst->letar == 'X'))
 	{
 		if (lst->width != -1 && lst->zero_or_minus == '1')
 			return (ft_hesh(lst, str));

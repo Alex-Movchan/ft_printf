@@ -18,53 +18,60 @@ char *ft_print_wchar_str(va_list ap, t_srt *lst)
 	wchar_t *str;
 	char *src;
 	int j;
+	int len;
 
 	j = -1;
-	i = 0;
 	str = va_arg(ap, wchar_t *);
 	if (str == NULL)
 	{
-		src = "(null)";
+		src = ft_strdup("(null)");
 		src = ft_accur(src, lst);
 		src = ft_width(src, lst);
 		return (src);
 	}
-	else
-		src = (char *) malloc(sizeof(char) * (lst->accur + 1));
-		while (str[i])
-		{
-			ft_print_wchar(str[i], src, &j);
-			i++;
-		}
-		src[++j] = '\0';
+	len = ft_len_wchar(str);
+	if (lst->accur != -1 && lst->accur < len)
+		len = lst->accur;
+	src = (char *) malloc(sizeof(char) * (len + 1));
+	i = 0;
+	while (str[i] && len != 0)
+	{
+		ft_print_wchar(str[i], src, &j, &len);
+		i++;
+	}
+	src[++j] = '\0';
 	src = ft_accur(src, lst);
 	src = ft_width(src, lst);
 	return (src);
 }
 
-void ft_print_wchar(wchar_t c, char *str, int *i)
+void ft_print_wchar(wchar_t c, char *str, int *i, int *len)
 {
-	if (c <= 0x7F)
+	if (c <= 0x7F && (*len) >= 1)
 	{
 		str[++(*i)] = (char) c;
+		(*len)--;
 	}
-	else if (c <= 0x7FF)
+	else if (c <= 0x7FF && (*len) >= 2)
 	{
 		str[++(*i)] = (char) ((c >> 6) + 0xC0);
 		str[++(*i)] = (char) ((c & 0x3F) + 0x80);
+		(*len) -= 2;
 	}
-	else if (c <= 0xFFFF)
+	else if (c <= 0xFFFF && (*len) >= 3)
 	{
 		str[++(*i)] = (char) ((c >> 12) + 0xE0);
 		str[++(*i)] = (char) (((c >> 6) & 0x3F) + 0x80);
 		str[++(*i)] = (char) ((c & 0x3F) + 0x80);
+		(*len) -= 3;
 	}
-	else if (c <= 0x10FFFF)
+	else if (c <= 0x10FFFF && (*len) >= 4)
 	{
 		str[++(*i)] = (char) ((c >> 18) + 0xF0);
 		str[++(*i)] = (char) (((c >> 12) & 0x3F) + 0x80);
 		str[++(*i)] = (char) (((c >> 6) & 0x3F) + 0x80);
 		str[++(*i)] = (char) ((c & 0x3F) + 0x80);
+		(*len) -= 4;
 	}
 }
 

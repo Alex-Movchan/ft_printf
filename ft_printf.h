@@ -85,7 +85,7 @@ char	            *ft_print_wchar_str(va_list ap, t_srt *lst);
 wchar_t	            *ft_wchar_width(wchar_t *str, t_srt *lst);
 int		            ft_strlen_wchar(wchar_t *str);
 char	            *ft_cest_str(va_list ap, t_srt *lst);
-void		        ft_print_wchar(wchar_t c, char *str, int *i);
+void		        ft_print_wchar(wchar_t c, char *str, int *i, int *len);
 int	    	        ft_cast_char(va_list ap, t_srt *lst);
 int             	ft_len_wchar(wchar_t *str);
 wchar_t		        *ft_wstrdup(wchar_t *str);
