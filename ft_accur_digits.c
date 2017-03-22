@@ -26,7 +26,7 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 		{
 			if ((src = ft_strnew((size_t)lst->accur)) == NULL)
 				return (NULL);
-			if (lst->zero_or_minus == '1')
+			if (lst->zero_or_minus == '1' && lst->accur < lst->width)
 			{
 				lst->zero_or_minus = '0';
 				lst->space = ' ';
