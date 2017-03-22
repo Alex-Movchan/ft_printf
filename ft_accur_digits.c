@@ -28,7 +28,7 @@ char	*ft_accur_digits(char *str, t_srt *lst)
 				return (NULL);
 			if (lst->zero_or_minus == '1')
 			{
-				lst->zero_or_minus = '0';
+				//lst->zero_or_minus = '0';
 				lst->space = ' ';
 			}
 			return (ft_strcpy_rev(src, str, '0', lst->accur));
