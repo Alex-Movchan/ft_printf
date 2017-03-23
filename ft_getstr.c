@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/25 17:28:33 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/22 21:20:31 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/23 13:46:23 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char	*get_str(va_list ap, t_srt *lst)
 		return (ft_print_wchar_str(ap, lst));
 	else if (lst->letar == 's')
 		return (ft_cest_str(ap, lst));
+	else if (lst->letar == 'b')
+		return (ft_castb(ap, lst));
 	else
 		return (ft_getdouble(ap, lst));
 }

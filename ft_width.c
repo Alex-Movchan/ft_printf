@@ -6,17 +6,17 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/26 20:54:56 by amovchan          #+#    #+#             */
-/*   Updated: 2017/02/27 19:14:52 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 23:25:00 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char *ft_strcpy_rev(char *s1, char *s2, char c, int j)
+char	*ft_strcpy_rev(char *s1, char *s2, char c, int j)
 {
-	int i;
+	int	i;
 
-	i = (int) ft_strlen(s2);
+	i = (int)ft_strlen(s2);
 	while (i >= 0)
 	{
 		s1[j] = s2[i];
@@ -29,14 +29,14 @@ char *ft_strcpy_rev(char *s1, char *s2, char c, int j)
 		j--;
 	}
 	if (s2[0] == '\0')
-		return(s1);
+		return (s1);
 	ft_strdel(&s2);
 	return (s1);
 }
 
-char *ft_strcpychar(char *s1, char *s2, int j, char c)
+char	*ft_strcpychar(char *s1, char *s2, int j, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s2[i])
@@ -54,9 +54,9 @@ char *ft_strcpychar(char *s1, char *s2, int j, char c)
 	return (s1);
 }
 
-char *ft_width(char *str, t_srt *lst)
+char	*ft_width(char *str, t_srt *lst)
 {
-	char *src;
+	char	*src;
 
 	if (lst->width != -1)
 	{
@@ -65,9 +65,9 @@ char *ft_width(char *str, t_srt *lst)
 			lst->width *= -1;
 			lst->zero_or_minus = '-';
 		}
-		if ((int) ft_strlen(str) < lst->width)
+		if ((int)ft_strlen(str) < lst->width)
 		{
-			src = ft_strnew((size_t) lst->width);
+			src = ft_strnew((size_t)lst->width);
 			if (lst->zero_or_minus == '1')
 				return (ft_strcpy_rev(src, str, '0', lst->width));
 			else if (lst->space == ' ')
@@ -82,17 +82,17 @@ char *ft_width(char *str, t_srt *lst)
 	return (str);
 }
 
-char 	*ft_plus2(char *str, t_srt *lst)
+char	*ft_plus2(char *str, t_srt *lst)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	str = ft_width(str, lst);
 	if (lst->plus != '0')
 	{
-		 if ((lst->width == -1 && lst->zero_or_minus == '1') || (int)ft_strlen(str) > lst->width)
-			 return (ft_plus(str, lst));
-
+		if ((lst->width == -1 && lst->zero_or_minus == '1')
+		|| (int)ft_strlen(str) > lst->width)
+			return (ft_plus(str, lst));
 		while (ft_isdigit(str[i]) != 1)
 			i++;
 		str[i] = lst->plus;
@@ -100,11 +100,11 @@ char 	*ft_plus2(char *str, t_srt *lst)
 	return (str);
 }
 
-char    *ft_plus(char *str, t_srt *lst)
+char	*ft_plus(char *str, t_srt *lst)
 {
-	char    *src;
-	int     i;
-	int     j;
+	char	*src;
+	int		i;
+	int		j;
 
 	i = -1;
 	if (lst->plus != '0')

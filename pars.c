@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 21:17:23 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/22 21:17:45 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/22 23:19:27 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,21 @@
 
 int		ft_printformat(const char *str, int *i, t_srt *lst, va_list ap)
 {
-	int		res;
+	int res;
 
 	res = 0;
 	if (str[(*i)] == '{')
 		ft_color(str, i, ap, lst);
-	ft_putchar(str[(*i)]);
-	res++;
+	if (lst->color == 0)
+	{
+		ft_putchar(str[(*i)]);
+		res++;
+	}
+	else
+	{
+		ft_putchar(str[(*i)]);
+		res++;
+	}
 	return (res);
 }
 

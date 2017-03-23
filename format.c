@@ -6,7 +6,7 @@
 /*   By: amovchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 16:09:05 by amovchan          #+#    #+#             */
-/*   Updated: 2017/03/22 21:32:58 by amovchan         ###   ########.fr       */
+/*   Updated: 2017/03/23 12:53:21 by amovchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_srt	*inicial_struct(t_srt *lst)
 	lst->fd = 1;
 	lst->ap = 0;
 	lst->dolar = 0;
+	lst->color = 0;
 	lst->chr = '0';
 	return (lst);
 }
