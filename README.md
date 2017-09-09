@@ -9,7 +9,9 @@ Only 3 colors:
 {green};
 {eoc} - remove color.
 You can specify a file descriptor.
-example
+
+Example
+
 ft_printf("{fd}Error!\n",2);
 
 Тthe default output goes to the first file descriptor.
