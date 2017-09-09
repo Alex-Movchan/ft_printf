@@ -12,7 +12,7 @@ You can specify a file descriptor.
 
 Example
 
-ft_printf("{fd}Error!\n",2);
+ft_printf("{fd}Error!\n", 2);
 
 Тthe default output goes to the first file descriptor.
 The rest coincide man printf(3).
